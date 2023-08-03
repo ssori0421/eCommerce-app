@@ -18,13 +18,26 @@ const LoginClient = () => {
     router.push('/');
   };
 
+  // 로그인
+  // submit 이벤트가 발생했을 때 새로고침되는 default동작을 prevent
+  const loginUser = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    /* firebase를 위한 소스코드 */
+  };
+
+  // Google 로그인
+  const signInWithGoogle = () => {
+    /* firebase를 위한 소스코드 */
+  };
+
   return (
     <section>
       <div>
         <h1>
           <Image src={LogoPath} alt='logo' />
         </h1>
-        <form>
+        <form onSubmit={loginUser}>
           {/* Input */}
           <div>{/* 자동 로그인, 비밀번호 수정 */}</div>
           <div>{/* Button */}</div>
