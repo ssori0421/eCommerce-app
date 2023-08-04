@@ -1,0 +1,31 @@
+.basicWrapper {
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  // 요소를 가운데 배치시키기
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* viewport 전체를 부모 요소로 사용하기 */
+.wrapper {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  // 요소의 깊이-클수록 물감을 덫칠하는 느낌
+  z-index: 999;
+}
+
+/* 다른 요소에 구애받지 않고 해당 요소를 viewport 정중앙에 배치시키기 */
+.loader {
+  position: fixed;
+  // viewport의 중앙점에서 시작점 잡고
+  left: 50%;
+  top: 50%;
+  // 요소가 viewport 정중앙에 위치됨
+  // 요소의 width의 절반만큼 왼쪽으로 이동, height의 절반만큼 위쪽로 이동
+  transform: translate(-50%, -50%);
+  //  요소의 깊이-클수록 물감을 덫칠하는 느낌
+  z-index: 999;
+}
