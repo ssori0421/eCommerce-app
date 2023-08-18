@@ -1,22 +1,22 @@
-:rot{
+:root{
   --font-family: sans-serif;
 
-  --dark-blue: #0a1930
-  --light-blue:#1f93ff
+  --dark-blue: #0a1930;
+  --light-blue:#1f93ff;
   
 
-  --light-gray: #e7e7e7
-  --dark-gray: #767676
-  --border-gray: #cccccc
-  --tacle-border-gray:#eee
+  --light-gray: #e7e7e7;
+  --dark-gray: #767676;
+  --border-gray: #CCCCCC;
+  --tacle-border-gray:#eee;
 
-  --color-white: #ffffff
-  --color-primary: #0074e9
+  --color-white: #ffffff;
+  --color-primary: #0074e9;
 
-  --color-black:#111111
-  --color-red: #e52528
+  --color-black:#111111;
+  --color-red: #e52528;
 
-  --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25)
+  --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
 }
 
 /* 모든 요소 */
