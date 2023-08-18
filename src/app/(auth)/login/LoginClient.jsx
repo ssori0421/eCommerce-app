@@ -6,12 +6,13 @@ import LogoPath from '@/assets/colorful.svg';
 import styles from './Auth.module.scss';
 import Loader from '@/components/loader/Loader';
 import Input from '@/components/input/Input';
+import AutoSigninCheckbox from '@/components/autoSigninCheckbox/AutoSigninCheckbox';
 
 const LoginClient = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [isQutoLogin, setIsAutoLogin] = useState(false);
+  const [isAutoLogin, setIsAutoLogin] = useState(false);
 
   // router 객체 생성
   const router = useRouter();
@@ -44,6 +45,7 @@ const LoginClient = () => {
           </h1>
           <form className={styles.form} onSubmit={loginUser}>
             {/* email input-input 컴포넌트에 prop으로 전달 */}
+
             <Input
               email
               icon='letter'
@@ -69,6 +71,11 @@ const LoginClient = () => {
             />
             <div className={styles.group}>
               {/* 자동 로그인, 비밀번호 수정 */}
+              {/* AutoSigninCheckbox 컴포넌트에 prop으로 전달 */}
+              <AutoSigninCheckbox
+                checked={isAutoLogin}
+                onChange={(e) => setIsAutoLogin(e.target.checked)}
+              />
               자동 로그인, 비밀번호 수정
             </div>
             <div className={styles.buttonGroup}>
