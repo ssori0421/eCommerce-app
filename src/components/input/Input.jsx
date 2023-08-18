@@ -53,44 +53,45 @@ const Input = ({
     <div className={classNames(styles.formControl, className)}>
       <label
         htmlFor={id}
-        classNme={classNames(styles.label, labelVisible || styles.labelHidden)}
+        className={classNames(styles.label, labelVisible || styles.labelHidden)}
       >
         {label}
       </label>
+
       <div
         className={classNames(
           styles.inputWrapper,
           errorProp && styles.inputWrapperError
         )}
       >
-        {icon ? <Icon /> : null}
-      </div>
-      <input
-        id={id}
-        type={checkType()}
-        name={name}
-        classNme={classNames(styles.input)}
-        placeholder={placeholder}
-        readOnly={readOnly}
-        disabled={disabled}
-        value={inputValue}
-        // onChange 이벤트가 발생하면 handleChange 함수 전달
-        onChange={handleChange}
-        // 이 외의 props들
-        {...restprops}
-      />
-
-      {/* password input의 경우 눈 모양 아이콘이 추가로 있음 */}
-      {password ? (
-        <button
-          type='button'
-          className={styles.button}
-          onClick={() => setIsPasswordVisible((prev) => !prev)}
+        {icon ? <Icon type={icon} /> : null}
+        <input
+          id={id}
+          type={checkType()}
+          name={name}
+          className={classNames(styles.input)}
+          placeholder={placeholder}
+          readOnly={readOnly}
           disabled={disabled}
-        >
-          <Icon type={iconType} alt={iconLabel} title={iconLabel} />
-        </button>
-      ) : null}
+          value={inputValue}
+          // onChange 이벤트가 발생하면 handleChange 함수 전달
+          onChange={handleChange}
+          // 이 외의 props들
+          {...restprops}
+        />
+
+        {/* password input의 경우 눈 모양 아이콘이 추가로 있음 */}
+        {password ? (
+          <button
+            type='button'
+            className={styles.button}
+            onClick={() => setIsPasswordVisible((prev) => !prev)}
+            disabled={disabled}
+          >
+            <Icon type={iconType} alt={iconLabel} title={iconLabel} />
+          </button>
+        ) : null}
+      </div>
 
       {/* error가 있을 경우 */}
       {errorProp && (
