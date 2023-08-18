@@ -70,7 +70,6 @@ const LoginClient = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
             <div className={styles.group}>
-              {/* 자동 로그인, 비밀번호 수정 */}
               {/* AutoSigninCheckbox 컴포넌트에 prop으로 전달 */}
               <AutoSigninCheckbox
                 checked={isAutoLogin}
