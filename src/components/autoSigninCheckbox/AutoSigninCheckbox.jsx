@@ -7,6 +7,7 @@ const AutoSigninCheckbox = ({
   label = '자동 로그인',
   checked,
   disabled,
+  // tooltip의 화살표 방향을 '위쪽'으로
   orientation = 'top',
   message = '개인 정보 보호를 위해 본인 기기에서만 이용해주세요.',
   onChange,
@@ -21,6 +22,7 @@ const AutoSigninCheckbox = ({
         onChange={onChange}
         {...restProps}
       />
+      {/* Tooltip 컴포넌트에 prop으로 전달 */}
       {checked && (
         <Tooltip
           left={-5}
