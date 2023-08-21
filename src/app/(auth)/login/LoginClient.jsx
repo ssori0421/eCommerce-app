@@ -77,7 +77,6 @@ const LoginClient = () => {
                 checked={isAutoLogin}
                 onChange={(e) => setIsAutoLogin(e.target.checked)}
               />
-              자동 로그인, 비밀번호 수정
             </div>
             <div className={styles.buttonGroup}>
               {/* Button 컴포넌트에 prop으로 전달 */}
