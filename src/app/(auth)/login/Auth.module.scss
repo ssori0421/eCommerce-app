@@ -28,7 +28,7 @@
         margin-top: 2px;
 
         .findLink {
-          color: val(--color-primary);
+          color: var(--color-primary);
           text-decoration: none;
           font-siz: 1.4rem;
         }
