@@ -48,7 +48,6 @@ const LoginClient = () => {
           </h1>
           <form className={styles.form} onSubmit={loginUser}>
             {/* email input-input 컴포넌트에 prop으로 전달 */}
-
             <Input
               email
               icon='letter'

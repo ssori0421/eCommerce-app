@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import styles from './Input.module.scss';
 import Icon from '../icon/Icon';
 
-// input에서 사용하는 값들을 prop으로 받음
 const Input = ({
   id,
   label,
@@ -21,8 +20,6 @@ const Input = ({
   onChange,
   ...restprops
 }) => {
-  // const [email, setEmail] = useState(email ? email : '');
-  // const [password, setPassword] = useState(password ? password : '');
   const [inputValue, setInputValue] = useState(value ? value : '');
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
@@ -44,11 +41,10 @@ const Input = ({
     onChange(e);
   };
 
-  // password 입력에 따라서 icon의 type을 지정하는 함수
+  // password input 오른쪽 눈 모양 아이콘(비밀번호 보임/숨김)
   const iconType = isPasswordVisible ? 'show' : 'hide';
   const iconLabel = `비밀번호 ${isPasswordVisible ? '표시' : '감춤'}`;
 
-  // classNames 라이브러리 사용
   return (
     <div className={classNames(styles.formControl, className)}>
       <label
@@ -58,6 +54,7 @@ const Input = ({
         {label}
       </label>
 
+      {/* errorProp이 있는 경우 inputWrapperError styling을 따름 */}
       <div
         className={classNames(
           styles.inputWrapper,
@@ -74,9 +71,7 @@ const Input = ({
           readOnly={readOnly}
           disabled={disabled}
           value={inputValue}
-          // onChange 이벤트가 발생하면 handleChange 함수 전달
           onChange={handleChange}
-          // 이 외의 props들
           {...restprops}
         />
 
