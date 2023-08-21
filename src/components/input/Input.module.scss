@@ -2,6 +2,25 @@
   display: inline-flex;
   flex-direction: column;
 
+  .label {
+    display: inline-block;
+    margin-bottom: 4px;
+    color: #24292e;
+    font-size: 13px;
+
+    // 접근성 감춤 설정
+    // display: none; 처리를 하면 화면상에 출력이 안됨
+    // 검색 봇이 이 태그 요소를 인식하지 못함
+    &Hidden {
+      position: absolute;
+      clip-path: circle(0);
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      border: 0;
+      padding: 0;
+    }
+  }
   .inputWrapper {
     position: relative;
     display: inline-flex;
@@ -37,25 +56,7 @@
       color: var(--dark-gray);
     }
   }
-  .label {
-    display: inline-block;
-    margin-bottom: 4px;
-    color: #24292e;
-    font-size: 13px;
 
-    // 접근성 감춤 설정
-    // display: none; 처리를 하면 화면상에 출력이 안됨
-    // 검색 봇이 이 태그 요소를 인식하지 못함
-    &Hidden {
-      position: absolute;
-      clip-path: circle(0);
-      width: 1px;
-      height: 1px;
-      margin: -1px;
-      border: 0;
-      padding: 0;
-    }
-  }
   .button {
     cursor: pointer;
     border: 0;
@@ -70,6 +71,7 @@
       vertical-align: bottom;
     }
   }
+
   .error {
     color: var(--color-red);
     font-size: 15px;
