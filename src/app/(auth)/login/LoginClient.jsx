@@ -9,6 +9,7 @@ import Input from '@/components/input/Input';
 import AutoSigninCheckbox from '@/components/autoSigninCheckbox/AutoSigninCheckbox';
 import Button from '@/components/button/Button';
 import Link from 'next/link';
+import Divider from '@/components/divider/Divider';
 
 const LoginClient = () => {
   const [email, setEmail] = useState('');
@@ -84,9 +85,11 @@ const LoginClient = () => {
               <Button type='submit' width='100%'>
                 로그인
               </Button>
+              <Divider />
               <Button width='100%' secondary>
                 <Link href={'/register'}>회원가입</Link>
               </Button>
+              <Divider />
             </div>
             <div>
               <Button onClick={signInWithGoogle}>구글 로그인</Button>
