@@ -7,6 +7,8 @@ import styles from './Auth.module.scss';
 import Loader from '@/components/loader/Loader';
 import Input from '@/components/input/Input';
 import AutoSigninCheckbox from '@/components/autoSigninCheckbox/AutoSigninCheckbox';
+import Button from '@/components/button/Button';
+import Link from 'next/link';
 
 const LoginClient = () => {
   const [email, setEmail] = useState('');
@@ -78,12 +80,16 @@ const LoginClient = () => {
               자동 로그인, 비밀번호 수정
             </div>
             <div className={styles.buttonGroup}>
-              {/* Button */}
-              Button
+              {/* Button 컴포넌트에 prop으로 전달 */}
+              <Button type='submit' width='100%'>
+                로그인
+              </Button>
+              <Button width='100%' secondary>
+                <Link href={'/register'}>회원가입</Link>
+              </Button>
             </div>
             <div>
-              {/* Button */}
-              Button
+              <Button onClick={signInWithGoogle}>구글 로그인</Button>
             </div>
           </form>
         </div>
