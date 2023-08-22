@@ -9,6 +9,9 @@ import Button from '@/components/button/Button';
 import Divider from '@/components/divider/Divider';
 import Link from 'next/link';
 import LogoPath from '@/assets/colorful.svg';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { toast } from 'react-toastify';
+import { auth } from '@/firebase/firebase';
 
 const RegisterClient = () => {
   const [email, setEmail] = useState('');
@@ -20,12 +23,34 @@ const RegisterClient = () => {
   // router 객체 생성
   const router = useRouter();
 
-  // 로그인
-  // submit 이벤트가 발생했을 때 새로고침되는 default동작을 prevent
+  // 회원가입 버튼을 클릭했을 때 호출되는 함수
   const registerUser = (e) => {
     e.preventDefault();
+    // 비밀번호가 비밀번호 확인과 일치하지 않을 경우
+    if (password !== cPassword) {
+      return toast.error('비밀번호가 일치하지 않습니다.');
+    }
+    // Loader 컴포넌트 보이도록 함
     setIsLoading(true);
-    /* firebase를 위한 소스코드 */
+    // firebase의 createUserWithEmailAndPassword()함수를 사용
+    // userCredential : 회원가입 성공시 firebase에 저장된 유저 정보를 담은 객체
+    // auth는 firebase.js 파일에서 생성한 인증에 필요한 객체
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // userCredential 객체에서 user feild를 user 변수에 담음
+        const user = userCredential.user;
+        console.log('user', user);
+        // Loader 컴포넌트 숨김
+        setIsLoading(false);
+
+        toast.success('등록 성공...');
+        // router.push 메서드를 사용해서 login 페이지로 이동
+        router.push('/login');
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        toast.error(error.message);
+      });
   };
 
   return (
