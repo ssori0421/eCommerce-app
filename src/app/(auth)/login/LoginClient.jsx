@@ -10,6 +10,7 @@ import AutoSigninCheckbox from '@/components/autoSigninCheckbox/AutoSigninCheckb
 import Button from '@/components/button/Button';
 import Link from 'next/link';
 import Divider from '@/components/divider/Divider';
+import { toast } from 'react-toastify';
 
 const LoginClient = () => {
   const [email, setEmail] = useState('');
@@ -29,6 +30,7 @@ const LoginClient = () => {
   // submit 이벤트가 발생했을 때 새로고침되는 default동작을 prevent
   const loginUser = (e) => {
     e.preventDefault();
+    toast.info('성공!');
     setIsLoading(true);
     /* firebase를 위한 소스코드 */
   };
