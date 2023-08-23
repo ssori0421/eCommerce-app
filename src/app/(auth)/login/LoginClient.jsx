@@ -11,6 +11,12 @@ import Button from '@/components/button/Button';
 import Link from 'next/link';
 import Divider from '@/components/divider/Divider';
 import { toast } from 'react-toastify';
+import { auth } from '@/firebase/firebase';
+import {
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from 'firebase/auth';
 
 const LoginClient = () => {
   const [email, setEmail] = useState('');
@@ -26,18 +32,45 @@ const LoginClient = () => {
     router.push('/');
   };
 
-  // 로그인
-  // submit 이벤트가 발생했을 때 새로고침되는 default동작을 prevent
+  // 로그인 버튼을 클릭했을 때 호출되는 함수
   const loginUser = (e) => {
     e.preventDefault();
     toast.info('성공!');
+    // Loader 컴포넌트 보이도록 함
     setIsLoading(true);
-    /* firebase를 위한 소스코드 */
+    // firebase의 signInWithEmailAndPassword()함수를 사용
+    signInWithEmailAndPassword(auth, email, password)
+      // 로그인 성공시
+      .then(() => {
+        // Loader 컴포넌트 숨김
+        setIsLoading(false);
+        toast.success('로그인에 성공했습니다.');
+        // 홈 화면으로 이동
+        redirectUser();
+      })
+      .catch((error) => {
+        // Loader 컴포넌트 숨김
+        setIsLoading(false);
+        toast.error(error.message);
+      });
   };
 
-  // Google 로그인
-  const signInWithGoogle = () => {
-    /* firebase를 위한 소스코드 */
+  // 구글 로그인 버튼을 클릭했을 때 호출되는 함수
+  const signInWithGoogle = (e) => {
+    e.preventDefault();
+    // 인스턴스 생성
+    const provider = new GoogleAuthProvider();
+    // firebase의 signInWithPopup()함수를 사용해서 구글 로그인 프로세스 시작
+    signInWithPopup(auth, provider)
+      // 구글 로그인 성공시
+      .then((result) => {
+        toast.success('로그인에 성공했습니다.');
+        // 홈 화면으로 이동
+        redirectUser();
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
   };
 
   return (
