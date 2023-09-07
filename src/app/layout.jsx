@@ -3,6 +3,7 @@ import './globals.css';
 import { Inter } from 'next/font/google';
 import Footer from '@/layouts/footer/Footer';
 import Header from '@/layouts/header/Header';
+import Providers from '@/redux/provider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -15,10 +16,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <body className={inter.className}>
-        <Header />
-        <ToastProvider />
-        {children}
-        <Footer />
+        <Providers>
+          {/* Provider 컴포넌트 내부가 모두 children*/}
+          <Header />
+          <ToastProvider />
+          {/* ToastProvider 컴포넌트 내부가 모두 children*/}
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );
