@@ -10,10 +10,12 @@ const initialState = {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  // 액션 생성자 함수
   reducers: {
     // 로그인 한 유저
+    // 액션 생성자 함수를 사용해서 state를 업데이트
+    // state는 initialState를 의미
     SET_ACTIVE_USER: (state, action) => {
+      console.log('action', action);
       const { email, userName, userID } = action.payload;
       state.isLoggedIn = true;
       state.email = email;
@@ -21,6 +23,8 @@ const authSlice = createSlice({
       state.userID = userID;
     },
     // 로그아웃 한 유저
+    // 액션 생성자 함수를 사용해서 state를 업데이트
+    // state는 initialState를 의미
     REMOVE_ACTIVE_USER: (state) => {
       state.isLoggedIn = false;
       state.email = null;
