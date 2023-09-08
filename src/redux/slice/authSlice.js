@@ -7,12 +7,15 @@ const initialState = {
   userID: null,
 };
 
+// createSlice 함수 사용
+// 리듀서, 액션 생성자 함수 및 액션 타입을 간결하게 정의
 const authSlice = createSlice({
   name: 'auth',
   initialState,
+  // 리듀서- 액션 객체를 받아서 새로운 상태를 반환
   reducers: {
     // 로그인 한 유저
-    // 액션 생성자 함수를 사용해서 state를 업데이트
+    // 액션 생성자 함수: 액션 객체를 반환 {key : value}
     // state는 initialState를 의미
     SET_ACTIVE_USER: (state, action) => {
       console.log('action', action);
@@ -23,7 +26,7 @@ const authSlice = createSlice({
       state.userID = userID;
     },
     // 로그아웃 한 유저
-    // 액션 생성자 함수를 사용해서 state를 업데이트
+    // 액션 생성자 함수: 액션 객체를 반환 {key : value}
     // state는 initialState를 의미
     REMOVE_ACTIVE_USER: (state) => {
       state.isLoggedIn = false;
