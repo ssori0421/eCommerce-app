@@ -44,11 +44,11 @@ const Slider = () => {
   return (
     <div className={styles.slider}>
       <AiOutlineArrowLeft
-        className={`${styles.slide} ${styles.prev}`}
+        className={`${styles.arrow} ${styles.prev}`}
         onClick={prevSlide}
       />
       <AiOutlineArrowRight
-        className={`${styles.slide} ${styles.next}`}
+        className={`${styles.arrow} ${styles.next}`}
         onClick={nextSlide}
       />
       {/* map 메서드를 사용해서 sliderData를 순회 */}
