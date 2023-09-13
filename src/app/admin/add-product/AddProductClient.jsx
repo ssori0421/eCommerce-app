@@ -108,7 +108,9 @@ const AddProductClient = () => {
       // addDoc() 메서드
       // addDoc() 메서드의 첫 번째 파라미터: collection() 메서드
       // addDoc() 메서드의 두 번째 파라미터: 객체 > firebase Firestore Database의 products collection의 feild에 추가됨
-      // collection() 메서드의 파라미터: firebase.js 파일에 만들어둔 db 객체와 firebase FireStore Database에 생성할 collection 이름("products")
+      // collection() 메서드
+      // 첫 번째 파라미터: firebase.js 파일에 만들어둔 db 객체
+      // 두 번째 파라미터: firebase FireStore Database에 생성할 collection 이름("products")
       addDoc(collection(db, 'products'), {
         name: product.name,
         imageURL: product.imageURL,
