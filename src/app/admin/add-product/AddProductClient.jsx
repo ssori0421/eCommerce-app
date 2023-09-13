@@ -43,8 +43,6 @@ const AddProductClient = () => {
   // 페이지 이동
   const router = useRouter();
 
-  // 파일 선택 버튼 클릭시 실행되는 함수
-  // firebase Storage에 이미지를 업로드
   const handleInputChange = (e) => {
     // 구조 분해 할당
     const { name, value } = e.target;
@@ -55,6 +53,7 @@ const AddProductClient = () => {
   };
 
   // 파일 선택 버튼 클릭시 실행되는 함수
+  // firebase Storage에 이미지를 업로드
   const handleImageChange = (e) => {
     // 업로드한 파일
     const file = e.target.files[0];
@@ -96,7 +95,7 @@ const AddProductClient = () => {
           // spread 연산자를 사용해서 product state를 가져온 다음 imageURL만 downloadURL로 덮어쒸움
           setProduct({ ...product, imageURL: downloadURL });
           // toast 메세지 띄움
-          toast.success('이미지를 성골적으로 업로드했습니다.');
+          toast.success('이미지를 성공적으로 업로드했습니다.');
         });
       }
     );
