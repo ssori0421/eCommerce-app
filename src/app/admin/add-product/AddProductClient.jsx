@@ -54,14 +54,13 @@ const AddProductClient = () => {
   const handleImageChange = (e) => {
     // 업로드한 파일
     const file = e.target.files[0];
-    // firebase Storage에 이미지 저장
-    // firebase.js 파일에서 생성한 storage객체를 넣고
-    // firebase Storage의 images 폴더에
-    // 날짜와 파일이름으로 업로드한 이미지의 name을 설정함
+    // ref() 메서드
+    // 첫 번째 파라미터: firebase.js 파일에서 생성한 storage 객체
+    // 두 번째 파라미터: url (날짜와 파일이름으로 업로드한 이미지의 name을 설정함)
     const storageRef = ref(storage, `images/${Date.now()}${file.name}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
 
-    // uploadTask.on()메서드 사용
+    // uploadTask.on()메서드
     // snapshot 처리, error 발생시 처리, upload 성공시 처리
     uploadTask.on(
       'state_change',
