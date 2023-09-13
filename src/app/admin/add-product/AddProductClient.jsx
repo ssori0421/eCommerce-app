@@ -51,6 +51,7 @@ const AddProductClient = () => {
     setProduct({ ...product, [name]: value });
   };
 
+  // 파일 선택 버튼 클릭시 실행되는 함수
   const handleImageChange = (e) => {
     // 업로드한 파일
     const file = e.target.files[0];
@@ -58,10 +59,16 @@ const AddProductClient = () => {
     // 첫 번째 파라미터: firebase.js 파일에서 생성한 storage 객체
     // 두 번째 파라미터: url (날짜와 파일이름으로 업로드한 이미지의 name을 설정함)
     const storageRef = ref(storage, `images/${Date.now()}${file.name}`);
+
+    // uploadBytesResumable() 메서드
+    // 첫 번째 파라미터: ref
+    // 두 번째 파라미터: data
     const uploadTask = uploadBytesResumable(storageRef, file);
 
     // uploadTask.on()메서드
-    // snapshot 처리, error 발생시 처리, upload 성공시 처리
+    // 첫 번째 파라미터: snapshot
+    // 두 번째 파라미터: error시 처리
+    // 세 번째 파라미터: complete시 처리
     uploadTask.on(
       'state_change',
       (snapshot) => {
@@ -71,7 +78,6 @@ const AddProductClient = () => {
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         // setState로 uploadProgress state에 동기화
         console.log('progress', progress);
-        setUploadProgress(progress);
       },
       // 에러 발생시
       // toast 메세지 띄움
@@ -79,7 +85,9 @@ const AddProductClient = () => {
         toast.error(error.message);
       },
       // 업로드 성공시
-      // getDownloadURL() 메서드를 사용해서 URL을 가져옴
+      // getDownloadURL() 메서드
+      // 파라미터: ref
+      // promise 객체를 반환 > promise 후속처리 메서드인 then 메서드를 사용 > URL 받아옵
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           // setState로 product state에 동기화
@@ -92,7 +100,7 @@ const AddProductClient = () => {
     );
   };
 
-  // 상품을 생성하는 함수
+  // 상품 생성 버튼 클릭시 실행되는 함수
   const addProduct = (e) => {
     // form 태그 사용시  e.preventDefault() 반드시 사용하기
     e.preventDefault();
