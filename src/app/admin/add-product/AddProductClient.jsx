@@ -6,8 +6,9 @@ import Loader from '@/components/loader/Loader';
 import Heading from '@/components/heading/Heading';
 import Button from '@/components/button/Button';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
-import { storage } from '@/firebase/firebase';
+import { storage, db } from '@/firebase/firebase';
 import { toast } from 'react-toastify';
+import { Timestamp, addDoc, collection } from 'firebase/firestore';
 
 const categories = [
   { id: 1, name: 'Laptop' },
@@ -42,9 +43,12 @@ const AddProductClient = () => {
   // 페이지 이동
   const router = useRouter();
 
+  // 파일 선택 버튼 클릭시 실행되는 함수
+  // firebase Storage에 이미지를 업로드
   const handleInputChange = (e) => {
     // 구조 분해 할당
     const { name, value } = e.target;
+    // setState로 product state에 동기화
     // spread 연산자 사용
     // 원래 initialState 다 넣어주고, 작성중인 input field만 value값으로 넣어서 업데이트
     setProduct({ ...product, [name]: value });
@@ -84,10 +88,8 @@ const AddProductClient = () => {
       (error) => {
         toast.error(error.message);
       },
+
       // 업로드 성공시
-      // getDownloadURL() 메서드
-      // 파라미터: ref
-      // promise 객체를 반환 > promise 후속처리 메서드인 then 메서드를 사용 > URL 받아옵
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           // setState로 product state에 동기화
@@ -101,9 +103,41 @@ const AddProductClient = () => {
   };
 
   // 상품 생성 버튼 클릭시 실행되는 함수
+  // firebase의 Firestore Database에 상품 정보가 저장됨
   const addProduct = (e) => {
     // form 태그 사용시  e.preventDefault() 반드시 사용하기
     e.preventDefault();
+    try {
+      // addDoc() 메서드
+      // addDoc() 메서드의 첫 번째 파라미터: collection() 메서드
+      // addDoc() 메서드의 두 번째 파라미터: 객체 > firebase Firestore Database의 products collection의 feild에 추가됨
+      // collection() 메서드
+      // 첫 번째 파라미터: firebase.js 파일에 만들어둔 db 객체
+      // 두 번째 파라미터: firebase FireStore Database에 생성할 collection 이름("products")
+      addDoc(collection(db, 'products'), {
+        name: product.name,
+        imageURL: product.imageURL,
+        price: Number(product.price),
+        category: product.category,
+        brand: product.brand,
+        desc: product.desc,
+        createdAt: Timestamp.now().toDate(),
+      });
+      // setState로 isLoading state에 동기화
+      setIsLoading(false);
+      // setState로 uploadProgress state에 동기화
+      setUploadProgress(0);
+      // setState로 product state에 동기화
+      // spread 연산자를 사용해서 initialState를 가져옴
+      setProduct({ ...initialState });
+      // toast 메세지 띄움
+      toast.success('상품을 저장했습니다.');
+      // 페이지 이동
+      router.push('/admin/all-products');
+    } catch (error) {
+      setIsLoading(false);
+      toast.error(error.message);
+    }
   };
 
   return (
