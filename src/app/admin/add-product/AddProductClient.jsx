@@ -5,6 +5,9 @@ import { useRouter } from 'next/navigation';
 import Loader from '@/components/loader/Loader';
 import Heading from '@/components/heading/Heading';
 import Button from '@/components/button/Button';
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+import { storage } from '@/firebase/firebase';
+import { toast } from 'react-toastify';
 
 const categories = [
   { id: 1, name: 'Laptop' },
@@ -32,7 +35,7 @@ const initialState = {
 
 const AddProductClient = () => {
   const [product, setProduct] = useState({ ...initialState });
-  // 이미지를 firebase 스토리지에 업로드 할 때 업로드 퍼센티지(0~100%)
+  // 이미지를 업로드 진행률을 담은 state (0~100%)
   const [uploadProgress, setUploadProgress] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -47,7 +50,47 @@ const AddProductClient = () => {
     setProduct({ ...product, [name]: value });
   };
 
-  const handleImageChange = (e) => {};
+  const handleImageChange = (e) => {
+    // 업로드한 파일
+    const file = e.target.files[0];
+    // firebase Storage에 이미지 저장
+    // firebase.js 파일에서 생성한 storage객체를 넣고
+    // firebase Storage의 images 폴더에
+    // 날짜와 파일이름으로 업로드한 이미지의 name을 설정함
+    const storageRef = ref(storage, `images/${Date.now()}${file.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    // uploadTask.on()메서드 사용
+    // snapshot 처리, error 발생시 처리, upload 성공시 처리
+    uploadTask.on(
+      'state_change',
+      (snapshot) => {
+        console.log('snapshot', snapshot);
+        // 이미지 업로드 진행률
+        const progress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        // setState로 uploadProgress state에 동기화
+        console.log('progress', progress);
+        setUploadProgress(progress);
+      },
+      // 에러 발생시
+      // toast 메세지 띄움
+      (error) => {
+        toast.error(error.message);
+      },
+      // 업로드 성공시
+      // getDownloadURL() 메서드를 사용해서 URL을 가져옴
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          // setState로 product state에 동기화
+          // spread연산자를 사용해서 product state를 가져온 다음 imageURL만 downloadURL로 덮어쒸움
+          setProduct({ ...product, imageURL: downloadURL });
+          // toast 메세지 띄움
+          toast.success('이미지를 성골적으로 업로드했습니다.');
+        });
+      }
+    );
+  };
 
   // 상품을 생성하는 함수
   const addProduct = (e) => {
