@@ -16,7 +16,6 @@ const Header = () => {
   const [displayName, setDisplayName] = useState('');
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      console.log('user', user);
       if (user) {
         // displayName이 없는 경우 email을 이용해서 displayName을 만들어줌
         if (user.displayName === null) {

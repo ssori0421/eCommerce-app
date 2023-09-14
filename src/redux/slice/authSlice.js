@@ -18,7 +18,6 @@ const authSlice = createSlice({
     // 액션 생성자 함수: 액션 객체를 반환 {key : value}
     // state는 initialState를 의미
     SET_ACTIVE_USER: (state, action) => {
-      console.log('action', action);
       const { email, userName, userID } = action.payload;
       state.isLoggedIn = true;
       state.email = email;
