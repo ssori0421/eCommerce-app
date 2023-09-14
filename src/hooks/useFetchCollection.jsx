@@ -8,7 +8,7 @@ const useFetchCollection = (collectionName) => {
   const [isLoading, setIsLoading] = useState(false);
 
   // getCollection 함수 생헝
-  // useCallback으로 감싸줌
+  // useCallback으로 감싸줌 (콜백 함수를 메모이제이션)
   const getCollection = useCallback(() => {
     setIsLoading(true);
     try {
@@ -34,9 +34,17 @@ const useFetchCollection = (collectionName) => {
           ...doc.data(),
         }));
         console.log('allData', allData);
+        // setState로 data state 동기화
+        setData(allData);
+        // setState로 isLoading state 동기화
+        setIsLoading(false);
       });
-    } catch (error) {}
-  }, []);
+    } catch (error) {
+      // setState로 isLoading state 동기화
+      setIsLoading(false);
+      toast.error(error.message);
+    }
+  }, [collectionName]);
 
   // useEffect에 getCollection 함수
   useEffect(() => {
