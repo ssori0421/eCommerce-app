@@ -53,7 +53,6 @@ const useFetchCollection = (collectionName) => {
 
   // data와 isLoading을 반환
   return { data, isLoading };
-  000;
 };
 
 export default useFetchCollection;
