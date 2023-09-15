@@ -3,6 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 // initialState 정의
 const initialState = {
   products: [],
+  minPrice: null,
+  maxPrice: null,
 };
 
 // productSlice 정의 (createSlice ()메서드 사용해 slice 생성)
@@ -21,16 +23,37 @@ const productSlice = createSlice({
     STORE_PRODUCTS(state, action) {
       state.products = action.payload.products;
     },
+    GET_PRICE_RANGE(state, action) {
+      // 구조 분해 할당으로 product 추출
+      const { products } = action.payload;
+
+      const array = [];
+      // map() 메서드
+      // products 배열을 순회하면서 가격정보만 담은 새로운 비열을 반환해 array에 담음
+      products.map((product) => {
+        const price = product.price;
+        return array.push(price);
+      });
+
+      const min = Math.min(...array);
+      const max = Math.max(...array);
+
+      // initialState의 minPrice와 maxPrice를 각각 min, max 값으로 할당해줌
+      state.minPrice = min;
+      state.maxPrice = max;
+    },
   },
 });
 
 // 구조 분해 할당으로 export
-export const { STORE_PRODUCTS } = productSlice.actions;
+export const { STORE_PRODUCTS, GET_PRICE_RANGE } = productSlice.actions;
 
 // 함수 작성
 // state는 Redux Store의 상태 객체
 // name(key)를 사용해서 상태 객체 state에서 productSlice애 점근 >
 // productSlice에서 여러 필드에 쉽게 접근 가능
 export const selectProducts = (state) => state.product.products;
+export const selectMinPrice = (state) => state.product.minPrice;
+export const selectMaxPrice = (state) => state.product.maxPrice;
 
 export default productSlice.reducer;
