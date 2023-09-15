@@ -4,6 +4,10 @@ import useFetchCollection from '@/hooks/useFetchCollection';
 import styles from './Product.module.scss';
 import { useDispatch } from 'react-redux';
 import { STORE_PRODUCTS } from '@/redux/slice/productSlice';
+import { selectProducts } from '@/redux/slice/productSlice';
+import Loader from '../loader/Loader';
+import ProductList from './productList/ProductList';
+import ProductFilter from './productFilter/ProductFilter';
 
 const Product = () => {
   // useFetchCollection() 커스텀 훅 호출
@@ -25,11 +29,17 @@ const Product = () => {
     );
   }, [data, dispatch]);
 
+  const products = useSelctor(selectProducts);
+
   return (
     <section className={styles.product}>
       {/* aside 태그를 사용해서 사이드바 UI */}
-      <aside className={styles.filter}></aside>
-      <div className={styles.content}></div>
+      <aside className={styles.filter}>
+        {isLoading ? null : <ProductFilter />}
+      </aside>
+      <div className={styles.content}>
+        {isLoading ? <Loader basic /> : <ProductList products={products} />}
+      </div>
     </section>
   );
 };
