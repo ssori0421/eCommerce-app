@@ -39,7 +39,10 @@ const authSlice = createSlice({
 // 구조 분해 할당으로 export
 export const { SET_ACTIVE_USER, REMOVE_ACTIVE_USER } = authSlice.actions;
 
-// authSlice에서 여러 필드에 접근할 수 있도록 함수 작성
+// 함수 작성
+// state는 Redux Store의 상태 객체
+// 상태 객체 state에서 authSlice에 점근 >
+// authSlice에서 여러 필드에 쉽게 접근 가능
 export const selectIsLoggedIn = (state) => state.auth.isLoggedIn;
 export const selectEmail = (state) => state.auth.email;
 export const selectUserName = (state) => state.auth.userName;
