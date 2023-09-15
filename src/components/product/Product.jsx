@@ -2,8 +2,9 @@
 import React, { useEffect } from 'react';
 import useFetchCollection from '@/hooks/useFetchCollection';
 import styles from './Product.module.scss';
-import { useDispatch } from 'react-redux';
-import { STORE_PRODUCTS } from '@/redux/slice/productSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { STORE_PRODUCTS, GET_PRICE_RANGE } from '@/redux/slice/productSlice';
+
 import { selectProducts } from '@/redux/slice/productSlice';
 import Loader from '../loader/Loader';
 import ProductList from './productList/ProductList';
@@ -27,9 +28,17 @@ const Product = () => {
         products: data,
       })
     );
+
+    // dispatch() 함수
+    // GET_PRICE_RANGE 액션 생성자 함수를 인자로 담아서 reducer() 함수에 전달
+    dispatch(
+      GET_PRICE_RANGE({
+        products: data,
+      })
+    );
   }, [data, dispatch]);
 
-  const products = useSelctor(selectProducts);
+  const products = useSelector(selectProducts);
 
   return (
     <section className={styles.product}>
