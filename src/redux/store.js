@@ -1,6 +1,7 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import authReducer from './slice/authSlice';
 import productReducer from './slice/productSlice';
+import filterReducer from './slice/filterSlice';
 
 // rootReducer 선언
 // combineReducers 함수 사용
@@ -8,6 +9,7 @@ import productReducer from './slice/productSlice';
 const rootReducer = combineReducers({
   auth: authReducer,
   product: productReducer,
+  filter: filterReducer,
 });
 
 // Redux Store 정의
