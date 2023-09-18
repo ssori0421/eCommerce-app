@@ -49,9 +49,10 @@ const productSlice = createSlice({
 export const { STORE_PRODUCTS, GET_PRICE_RANGE } = productSlice.actions;
 
 // 함수 작성
+// 💡 Redux Store에 왜 값을 저장했지? => 필요시에 useSelector() 메서드를 사용해서 Redux Store에 저장된 state를 가져다가 쓰기 위해!!
 // state는 Redux Store의 상태 객체
 // name(key)를 사용해서 상태 객체 state에서 productSlice애 점근 >
-// productSlice에서 여러 필드에 쉽게 접근 가능
+// productSlice의 여러 필드에 쉽게 접근 가능
 export const selectProducts = (state) => state.product.products;
 export const selectMinPrice = (state) => state.product.minPrice;
 export const selectMaxPrice = (state) => state.product.maxPrice;
