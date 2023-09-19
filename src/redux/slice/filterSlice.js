@@ -72,6 +72,26 @@ const filterSlice = createSlice({
 
       state.filteredProducts = tempProducts;
     },
+    SORT_PRODUCTS: (state, action) => {
+      const { products, sort } = action.payload;
+      let tempProducts = [];
+      // 최신 순 정렬
+      if (sort === 'latest') {
+        tempProducts = products;
+      }
+      // 낮은 가격 순 정렬
+      if (sort === 'lowest-price') {
+        tempProducts = products.slice().sort((a, b) => {
+          return a.price - b.price;
+        });
+      }
+      // 높은 가격 순 정렬
+      if (sort === 'highest-price') {
+        tempProducts = products.slice().sort((a, b) => {
+          return b.price - a.price;
+        });
+      }
+    },
   },
 });
 
@@ -81,6 +101,7 @@ export const {
   FILTER_BY_CATEGORY,
   FILTER_BY_PRICE,
   FILTER_BY,
+  SORT_PRODUCTS,
 } = filterSlice.actions;
 
 // 함수 작성
