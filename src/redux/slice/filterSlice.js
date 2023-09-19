@@ -18,6 +18,8 @@ const filterSlice = createSlice({
     // 파라미터로 state(initialState)와 action을 받음
     // 액션 생성자 함수에 전달한 값은 action.payload에 담김 - 액션 객체(key:value)
     // 새로운 state 상태 객체를 반환
+
+    // ProductFilter 컴포넌트와 관련 - 카테고리 선택시
     FILTER_BY_CATEGORY: (state, action) => {
       const { products, category } = action.payload;
       let tempProducts = [];
@@ -30,6 +32,7 @@ const filterSlice = createSlice({
       }
       state.filteredProducts = tempProducts;
     },
+    // ProductFilter 컴포넌트와 관련 - 브랜드 선택시
     FILTER_BY_BRAND: (state, action) => {
       const { products, price } = action.payload;
       let tempProducts = [];
@@ -40,6 +43,7 @@ const filterSlice = createSlice({
       }
       state.filteredProducts = tempProducts;
     },
+    // ProductFilter 컴포넌트와 관련 - 가격 설정시
     FILTER_BY_PRICE: (state, action) => {
       const { products, price } = action.payload;
       let tempProducts = [];
@@ -49,6 +53,7 @@ const filterSlice = createSlice({
       // tempProducts를 initialState의 filteredProducts에 할당
       state.filteredProducts = tempProducts;
     },
+    // ProductFilter 컴포넌트와 관련 - 카테고리 > 브랜드 > 가격 모두 처리
     FILTER_BY: (state, action) => {
       const { products, price, brand, category } = action.payload;
       let tempProducts = [];
@@ -67,11 +72,12 @@ const filterSlice = createSlice({
           (product) => product.brand === brand
         );
       }
-
       tempProducts = tempProducts.filter((product) => product.price <= price);
-
+      // tempProducts를 initialState의 filteredProducts에 할당
       state.filteredProducts = tempProducts;
     },
+
+    // ProductList 컴포넌트와 관련
     SORT_PRODUCTS: (state, action) => {
       const { products, sort } = action.payload;
       let tempProducts = [];
@@ -91,6 +97,8 @@ const filterSlice = createSlice({
           return b.price - a.price;
         });
       }
+      // tempProducts를 initialState의 filteredProducts에 할당
+      state.filteredProducts = tempProducts;
     },
   },
 });
