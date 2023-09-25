@@ -106,6 +106,7 @@ const AddProductClient = () => {
   const addProduct = (e) => {
     // form 태그 사용시  e.preventDefault() 반드시 사용하기
     e.preventDefault();
+    setIsLoading(true);
     try {
       // addDoc() 메서드
       // addDoc() 메서드의 첫 번째 파라미터: collection() 메서드
