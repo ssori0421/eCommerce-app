@@ -122,6 +122,7 @@ const ProductList = () => {
             {currentProducts.map((product) => {
               return (
                 <div key={product.id}>
+                  {/* ProductItem 컴포넌트에 product 배열의 요소들을 prop으로 전달 */}
                   <ProductItem {...product} />
                 </div>
               );
