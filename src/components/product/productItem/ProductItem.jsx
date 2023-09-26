@@ -3,6 +3,8 @@ import React from 'react';
 import styles from './ProductItem.module.scss';
 import Link from 'next/link';
 import Image from 'next/image';
+import priceFormat from '@/utils/priceFormat';
+import { Rating } from 'react-simple-star-rating';
 
 const ProductItem = ({ id, name, price, imageURL }) => {
   const shortenText = (text, n) => {
@@ -24,8 +26,19 @@ const ProductItem = ({ id, name, price, imageURL }) => {
       </Link>
       <div className={styles.content}>
         <div className={styles.details}>
-          {/* shortenText 함수를 사용해서 name을 최대 10글자로 줄임 */}
+          {/* 상품명 - shortenText 함수를 사용해서 name을 최대 10글자로 줄임 */}
           <p>{shortenText(name, 10)}</p>
+          {/* 가격 */}
+          <em>
+            <strong style={{ color: '#cb1400' }}>{priceFormat(price)}</strong>원
+            {''}
+          </em>
+          <div className={styles.rating}>
+            {/* 평점 */}
+            <Rating size={17} readonly initialValue={1} />
+            {/* 상품평 개수 */}
+            <span className={styles.ratingCount}>{3}</span>
+          </div>
         </div>
       </div>
     </div>
