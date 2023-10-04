@@ -100,6 +100,20 @@ const filterSlice = createSlice({
       // tempProducts를 initialState의 filteredProducts에 할당
       state.filteredProducts = tempProducts;
     },
+
+    // InnerHeader 컴포넌트와 관련
+    FILTER_BY_SEARCH: (state, action) => {
+      const { products, search } = action.payload;
+      // filter() 메서드
+      // 검색값이 상품리스트에 있고 && 검색값이 카테고리에 있을 경우 그것들만 담아서 새로운 배열로 반환해서 tempProducts에 할당
+      const tempProducts = products.filter(
+        (product) =>
+          product.name.toLowerCase().includes(search.toLowerCase()) ||
+          product.category.toLowerCase().includes(search.toLowerCase())
+      );
+
+      state.filteredProducts = tempProducts;
+    },
   },
 });
 
@@ -110,6 +124,7 @@ export const {
   FILTER_BY_PRICE,
   FILTER_BY,
   SORT_PRODUCTS,
+  FILTER_BY_SEARCH,
 } = filterSlice.actions;
 
 // 함수 작성
