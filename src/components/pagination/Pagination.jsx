@@ -10,8 +10,8 @@ const Pagination = ({
   const pageNumbers = [];
 
   const [pageNumberLimit] = useState(3);
-  // 화살표를 누르지 않았을 떄 보이는 페이지 숫자
-  // < 1 2 3 >
+  // 한 섹션에서 보이는 페이지네이션 숫자 설정
+  // ex) <1 2 3>
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(3);
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
 
@@ -22,9 +22,11 @@ const Pagination = ({
   // 오른쪽 화살표 클릭시
   // ex) maxPageNumberLimit이 3일 때
   const paginateNextPage = () => {
+    // 섹션 이동 없을 시
     // 1페이지에서) setCurrentPage(1 + 1) => setCurrentPage(2)
     // 2페이지에서) setCurrentPage(2 + 1) => setCurrentPage(3)
     setCurrentPage(currentPage + 1);
+    // 섹션 이동 시
     // 3페이지에서) 3 + 1 > 3 임
     // setMaxPageNumberLimit(3 + 3) => setMaxPageNumberLimit(6)
     // setMinPageNumberLimit(0 + 3) => setMinPageNumberLimit(3)
@@ -38,9 +40,11 @@ const Pagination = ({
   // 왼쪽 화살표 클릭시
   // ex) maxPageNumberLimit이 3일 때
   const paginatePrevPage = () => {
+    // 섹션 이동 없을 시
     // 6페이지에서) setCurrentPage(6 - 1) => setCurrentPage(5)
     // 5페이지에서) setCurrentPage(5 - 1) => setCurrentPage(4)
     setCurrentPage(currentPage - 1);
+    // 섹션 이동 시
     // 4페이지에서) (4 - 1) / 3 의 나머지가 0임
     // setMaxPageNumberLimit(6 - 3) => setMaxPageNumberLimit(3)
     // setMinPageNumberLimit(3 - 3) => setMinPageNumberLimit(0)
@@ -71,6 +75,8 @@ const Pagination = ({
 
       {/* 페이제네이션 숫자 UI */}
       {pageNumbers.map((number) => {
+        // 한 섹션에는 아래와 같이 페이지네이션이 생성됨
+        // < minPageNumberLimit+1 minPageNumberLimit+2 .. maxPageNumberLimit >
         if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
           return (
             <li
