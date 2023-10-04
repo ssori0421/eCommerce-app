@@ -9,21 +9,21 @@ import { Rating } from 'react-simple-star-rating';
 import useFetchDocuments from '../../../hooks/useFetchDocuments';
 
 const ProductItem = ({ id, name, price, imageURL }) => {
-  // useFetchDocuments() 커스텀 훅 호출
-  // firebase의 Firestore Datebase의 'revuews' 컬렉션을 인자로 전달
-  // 반환값인 document를 받음
-  const { documents } = useFetchDocuments('reviews', ['productID', '==', id]);
-  console.log('documents', documents);
+  // // useFetchDocuments() 커스텀 훅 호출
+  // // firebase의 Firestore Datebase의 'revuews' 컬렉션을 인자로 전달
+  // // 반환값인 document를 받음
+  // const { documents } = useFetchDocuments('reviews', ['productID', '==', id]);
+  // console.log('documents', documents);
 
-  let productRating = 0;
-  // map() 사용
-  // documents 배열을 순회하면서 한 상품의 리뷰 점수를 모두 더함
-  documents.map((doc) => {
-    productRating = productRating + doc.rate;
-  });
+  // let productRating = 0;
+  // // map() 사용
+  // // documents 배열을 순회하면서 한 상품의 리뷰 점수를 모두 더함
+  // documents.map((doc) => {
+  //   productRating = productRating + doc.rate;
+  // });
 
-  // 평점 = 한 상품의 전체 리뷰 점수 / 리뷰 개수
-  const rating = productRating / documents.length;
+  // // 평점 = 한 상품의 전체 리뷰 점수 / 리뷰 개수
+  // const rating = productRating / documents.length;
 
   const shortenText = (text, n) => {
     // name의 길이가 n 이상인 경우 n개까지 자르고 말줄임표
@@ -57,11 +57,13 @@ const ProductItem = ({ id, name, price, imageURL }) => {
             <Rating
               size={17}
               readonly
-              // 리뷰가 없을 경우 rating이 NaN이 나오는데 이 경우 평점을 0을 주고, 아닐 경우 rating을 줌
-              initialValue={Number.isNaN(rating) ? 0 : rating}
+              initialValue={1}
+              // // 리뷰가 없을 경우 rating이 NaN이 나오는데 이 경우 평점을 0을 주고, 아닐 경우 rating을 줌
+              // initialValue={Number.isNaN(rating) ? 0 : rating}
             />
             {/* 상품평 개수 */}
-            <span className={styles.ratingCount}>({documents.length})</span>
+            <span className={styles.ratingCount}>{1}</span>
+            {/* <span className={styles.ratingCount}>({documents.length})</span> */}
           </div>
         </div>
       </div>
