@@ -4,6 +4,7 @@ import styles from './ProductItem.module.scss';
 import Link from 'next/link';
 import Image from 'next/image';
 import priceFormat from '@/utils/priceFormat';
+import rocketBadgeIcon from '@/assets/badge-rocket.svg';
 import { Rating } from 'react-simple-star-rating';
 
 const ProductItem = ({ id, name, price, imageURL }) => {
@@ -32,6 +33,7 @@ const ProductItem = ({ id, name, price, imageURL }) => {
           <em>
             <strong style={{ color: '#cb1400' }}>{priceFormat(price)}</strong>원
             {''}
+            <Image src={rocketBadgeIcon} alt='로켓배송' />
           </em>
           <div className={styles.rating}>
             {/* 평점 */}
