@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import freshIcon from '@/assets/icon-fresh.svg';
 import rocketIcon from '@/assets/icon-rocket.svg';
 import newIcon from '@/assets/new.svg';
@@ -9,10 +9,26 @@ import { useRouter } from 'next/navigation';
 import styles from './InnerHeader.module.scss';
 import logo from '@/assets/colorful.svg';
 import classNames from 'classnames';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectProducts } from '@/redux/slice/productSlice';
+import { FILTER_BY_SEARCH } from '@/redux/slice/filterSlice';
 
 const InnerHeader = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
   const [search, setSearch] = useState('');
+
+  // useSelector() 메서드 사용
+  // Redux Store에 저장된 state를 읽어와서 products 변수에 할당
+  const products = useSelector(selectProducts);
+
+  // useEffect 사용
+  // 자동 실행
+  useEffect(() => {
+    // dispatch() 함수
+    // FILTER_BY_SEARCH 액션 생성자 함수를 인자로 담아서 reducer() 함수에 전달
+    dispatch(FILTER_BY_SEARCH({ products, search }));
+  }, [dispatch, products, search]);
 
   const handleClick = () => {
     router.push('/cart');
