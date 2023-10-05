@@ -25,7 +25,11 @@ const useFetchDocuments = (collectionName, arg) => {
     // forEach() 함수 사용
     // querySnapshot 배열을 순회하면서 데이터를 추출해서 documentsArray 배열에 추가
     querySnapshot.forEach((doc) => {
-      documentsArray.push(doc.data());
+      const data = {
+        id: doc.id,
+        ...doc.data(),
+      };
+      documentsArray.push(data);
     });
 
     // setState로 document state에 동기화
