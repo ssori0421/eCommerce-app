@@ -10,6 +10,8 @@ import Divider from '@/components/divider/Divider';
 import priceFormat from '@/utils/priceFormat';
 import listCashIcon from '@/assets/list-cash-icon.png';
 import Button from '@/components/button/Button';
+import useFetchDocuments from '@/hooks/useFetchDocuments';
+import ProductReviewItem from '@/components/product/productReviewItem/ProductReviewItem';
 
 const ProductDetailClient = () => {
   // useParams() 훅을 사용해서 URL의 queryParam을 가져와서 id에 당음
@@ -20,6 +22,17 @@ const ProductDetailClient = () => {
   // 반환값인 document를 받아서 product라는 이름으로 사용
   const { document: product } = useFetchDocument('products', id);
   console.log('product', product);
+
+  // useFetchDocuments() 커스텀 훅 호출
+  // firebase의 Firestore Database의 'reviews' 컬렉션과 데이터 겁색 조건을 인자로 전달
+  // 반환값인 document를 받아서 reviews라는 이름으로 사용
+  const { documents: reviews } = useFetchDocuments('reviews', [
+    'productID',
+    '==',
+    id,
+  ]);
+  console.log('reviews', reviews);
+
   const [count, setCount] = useState(1);
 
   // 장바구니 담기 버튼 클릭시 장바구니에 담는 함수
@@ -118,6 +131,30 @@ const ProductDetailClient = () => {
           </div>
         </>
       )}
+      <div className={styles.card}>
+        <h3>상품평 ({reviews.length})</h3>
+        <div>
+          {reviews.length === 0 ? (
+            <p className={styles.noReviewText}>
+              해당 상품에 대한 상품평이 아직 없습니다.
+            </p>
+          ) : (
+            <>
+              {reviews.map((item) => {
+                return (
+                  <ProductReviewItem
+                    key={item.id}
+                    rate={item.rate}
+                    review={item.review}
+                    reviewDate={item.reviewDate}
+                    userName={item.userName}
+                  />
+                );
+              })}
+            </>
+          )}
+        </div>
+      </div>
     </section>
   );
 };
