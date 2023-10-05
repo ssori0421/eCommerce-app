@@ -19,6 +19,7 @@ const useFetchDocument = (collectionName, documentID) => {
         id: documentID,
         ...docSnap.data(),
       };
+
       // setState로 document state에 동기화
       setDocument(obj);
     } else {
