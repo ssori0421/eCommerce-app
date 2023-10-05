@@ -131,6 +131,8 @@ const ProductDetailClient = () => {
           </div>
         </>
       )}
+
+      {/* 상품평 */}
       <div className={styles.card}>
         <h3>상품평 ({reviews.length})</h3>
         <div>
