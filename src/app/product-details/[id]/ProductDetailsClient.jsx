@@ -12,6 +12,8 @@ import listCashIcon from '@/assets/list-cash-icon.png';
 import Button from '@/components/button/Button';
 import useFetchDocuments from '@/hooks/useFetchDocuments';
 import ProductReviewItem from '@/components/product/productReviewItem/ProductReviewItem';
+import { useDispatch } from 'react-redux';
+import { ADD_TO_CART, CALCULATE_TOTAL_QUANTITY } from '@/redux/slice/cartSlice';
 
 const ProductDetailClient = () => {
   // useParams() 훅을 사용해서 URL의 queryParam을 가져와서 id에 당음
@@ -33,10 +35,17 @@ const ProductDetailClient = () => {
   ]);
   console.log('reviews', reviews);
 
+  const dispatch = useDispatch();
+
   const [count, setCount] = useState(1);
 
   // 장바구니 담기 버튼 클릭시 장바구니에 담는 함수
-  const addToCart = () => {};
+  const addToCart = () => {
+    // dispatch() 함수
+    // ADD_TO_CART 액션 생성자 함수를 인자로 담아서 reducer() 함수에 전달
+    dispatch(ADD_TO_CART({ ...product, quantity: count }));
+    dispatch(CALCULATE_TOTAL_QUANTITY());
+  };
 
   // 배송 일자를 표시해주기 위해 필요한 변수들
   const today = new Date();
