@@ -21,7 +21,7 @@ const ProductDetailClient = () => {
 
   // useFetchDocument() 커스텀 훅 호출
   // firebase의 Firestore Database의 'products' 컬렉션과 id를 인자로 전달
-  // 반환값인 document를 받아서 product라는 이름으로 사용
+  // 반환값인 document(특정 상품의 데이터)를 받아서 product라는 이름으로 사용
   const { document: product } = useFetchDocument('products', id);
   console.log('product', product);
 
@@ -43,6 +43,7 @@ const ProductDetailClient = () => {
   const addToCart = () => {
     // dispatch() 함수
     // ADD_TO_CART 액션 생성자 함수를 인자로 담아서 reducer() 함수에 전달
+    // CALCULATE_TOTAL_QUANTITY 액션 생성자 함수를 인자로 담아서 reducer() 함수에 전달
     dispatch(ADD_TO_CART({ ...product, quantity: count }));
     dispatch(CALCULATE_TOTAL_QUANTITY());
   };
