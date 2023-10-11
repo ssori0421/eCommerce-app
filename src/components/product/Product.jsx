@@ -38,7 +38,7 @@ const Product = () => {
   }, [data, dispatch]);
 
   // useSelector() 메서드 사용
-  // Redux Store에 저장된 state를 읽어와서 각각의 변수에 할당
+  // Redux Store에 저장된 state를 읽어와서 products 변수에 할당
   const products = useSelector(selectProducts);
 
   return (
