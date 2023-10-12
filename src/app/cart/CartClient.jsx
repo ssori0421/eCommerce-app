@@ -63,11 +63,19 @@ const CartClient = () => {
     dispatch(CLEAR_CART());
   };
 
+  // location는 window객체에 존재함
+  // 에러를 방지하기 위해 조건문을 사용
   const url = typeof window !== 'undefined' ? window.location.href : '';
+  // 계산하기 버튼 클릭시
+  // 결제 페이지로 이동
   const checkout = () => {
     if (isLoggedIn) {
       router.push('/checkout-address');
-    } else {
+    }
+    // dispatch() 함수
+    // SAVE_URL 액션 생성자 함수를 인자로 담아서 reducer() 함수에 전달
+    // login 페이지로 이동
+    else {
       dispatch(SAVE_URL(url));
       router.push('/login');
     }
