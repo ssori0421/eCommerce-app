@@ -64,7 +64,7 @@ const ProductFilter = () => {
 
   return (
     <div className={styles.filter}>
-      <h4>카테코리</h4>
+      <h4>카테고리</h4>
       <div className={styles.category}>
         {allCategories.map((cat, index) => {
           return (
