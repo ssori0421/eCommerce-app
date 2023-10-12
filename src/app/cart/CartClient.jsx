@@ -69,9 +69,11 @@ const CartClient = () => {
   // 계산하기 버튼 클릭시
   // 결제 페이지로 이동
   const checkout = () => {
+    // 로그인 한 유저
     if (isLoggedIn) {
       router.push('/checkout-address');
     }
+    // 로그인 안 한 유저
     // dispatch() 함수
     // SAVE_URL 액션 생성자 함수를 인자로 담아서 reducer() 함수에 전달
     // login 페이지로 이동
