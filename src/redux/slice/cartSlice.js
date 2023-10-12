@@ -76,7 +76,6 @@ const cartSlice = createSlice({
       // map()메서드
       // 장바구니 상품이 담긴 배열을 순회하면서
       // 각 상품의 수량을 추출해서 quantity 변수에 담고,
-      console.log(state.cartItems);
       state.cartItems.map((item) => {
         const { cartQuantity } = item;
         const quantity = cartQuantity;
