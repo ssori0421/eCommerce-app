@@ -3,8 +3,11 @@ import React, { useEffect } from 'react';
 import useFetchCollection from '@/hooks/useFetchCollection';
 import styles from './Product.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { STORE_PRODUCTS, GET_PRICE_RANGE } from '@/redux/slice/productSlice';
-import { selectProducts } from '@/redux/slice/productSlice';
+import {
+  STORE_PRODUCTS,
+  GET_PRICE_RANGE,
+  selectProducts,
+} from '@/redux/slice/productSlice';
 import Loader from '../loader/Loader';
 import ProductList from './productList/ProductList';
 import ProductFilter from './productFilter/ProductFilter';
