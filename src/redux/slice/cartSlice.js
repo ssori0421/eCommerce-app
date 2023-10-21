@@ -121,6 +121,8 @@ const cartSlice = createSlice({
       state.cartTotalAmount = totalAmount;
     },
 
+    // 장바구니 페이지
+    // 유저가 위치하던 URL 기억
     SAVE_URL: (state, action) => {
       state.previousURL = action.payload;
     },
