@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './AutoSignInCheckbox.module.scss';
+import styles from './AutoSigninCheckbox.module.scss';
 import Checkbox from '../checkbox/Checkbox';
 import Tooltip from '../tooltip/Tooltip';
 
