@@ -1,19 +1,44 @@
-  # Dockerfile
+FROM node:18-alpine AS base
 
-  # build stage
-  FROM node:18.16.1-alpine
-  #directory 지정
-  WORKDIR /usr/src/app
-  COPY package.json ./
-  COPY yarn.lock ./
-  #패키지 다운로드
-  RUN yarn install
-  # 필요한 모든 파일을 복사
-  COPY . .
-  # 빌드
-  RUN yarn build
-  # 컨테이너 포트 80 설정
-  EXPOSE 80
-  # 어플리케이션 실행
-  CMD ["yarn", "start"]
-  FROM node:14.17.6-alpine3.14
+# Install dependencies only when needed
+FROM base AS deps
+RUN apk add --no-cache libc6-compat
+WORKDIR /app
+
+# Install dependencies based on the preferred package manager
+COPY package.json yarn.lock ./
+RUN yarn --frozen-lockfile --production;
+RUN rm -rf ./.next/cache
+
+# Rebuild the source code only when needed
+FROM base AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+
+RUN yarn build
+
+# Production image, copy all the files and run next
+FROM base AS runner
+WORKDIR /app
+
+ENV NODE_ENV=production
+
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+
+COPY —from=builder /app/public ./public
+
+RUN mkdir .next
+RUN chown nextjs:nodejs .next
+
+COPY —from=builder —chown=nextjs:nodejs /app/.next/standalone ./
+COPY —from=builder —chown=nextjs:nodejs /app/.next/static ./.next/static
+
+USER nextjs
+
+EXPOSE 80
+
+ENV PORT 3000
+
+CMD ["node", "server.js"]
