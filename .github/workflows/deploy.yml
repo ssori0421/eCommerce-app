@@ -23,14 +23,14 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOKERHUB_USERNAME }}/Next-Coupang-App:latest
+          tags: ${{ secrets.DOKERHUB_USERNAME }}/ecommerce-app:latest
 
       - name: Prepare Beanstalk Deployment
         run: |
           echo '{
             "AWSEBDockerrunVersion": "1",
             "Image": {
-              "Name": "${{ secrets.DOKERHUB_USERNAME }}/Next-Coupang-App:latest",
+              "Name": "${{ secrets.DOKERHUB_USERNAME }}/ecommerce-app:latest",
               "Update": "true"
             },
             "Ports": [
