@@ -6,12 +6,12 @@ import { getFirestore } from 'firebase/firestore';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyCYWvjOpzBPom3cOm0t2xuKr3mIEMGDSrc',
-  authDomain: 'react-next-ecommerce-app.firebaseapp.com',
-  projectId: 'react-next-ecommerce-app',
-  storageBucket: 'react-next-ecommerce-app.appspot.com',
-  messagingSenderId: '56775194810',
-  appId: '1:56775194810:web:14804b77d8f1273bc02a83',
+  apiKey: process.env.NEXT_PUBLIC_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_APP_ID,
 };
 
 // Initialize Firebase
