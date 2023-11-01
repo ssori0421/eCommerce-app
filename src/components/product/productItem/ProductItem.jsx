@@ -13,7 +13,6 @@ const ProductItem = ({ id, name, price, imageURL }) => {
   // // firebase의 Firestore Datebase의 'revuews' 컬렉션을 인자로 전달
   // // 반환값인 document를 받음
   // const { documents } = useFetchDocuments('reviews', ['productID', '==', id]);
-  // console.log('documents', documents);
 
   // let productRating = 0;
   // // map() 사용

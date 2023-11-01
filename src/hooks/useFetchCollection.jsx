@@ -33,7 +33,6 @@ const useFetchCollection = (collectionName) => {
           id: doc.id,
           ...doc.data(),
         }));
-        console.log('allData', allData);
         // setState로 data state 동기화
         setData(allData);
         // setState로 isLoading state 동기화

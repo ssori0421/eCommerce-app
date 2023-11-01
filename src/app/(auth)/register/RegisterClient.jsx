@@ -39,7 +39,6 @@ const RegisterClient = () => {
       .then((userCredential) => {
         // userCredential 객체에서 user feild를 user 변수에 담음
         const user = userCredential.user;
-        console.log('user', user);
         // Loader 컴포넌트 숨김
         setIsLoading(false);
 
