@@ -74,11 +74,9 @@ const AddProductClient = () => {
     uploadTask.on(
       'state_change',
       (snapshot) => {
-        console.log('snapshot', snapshot);
         // 이미지 업로드 진행률
         const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log('progress', progress);
         // setState로 uploadProgress state에 동기화
         setUploadProgress(progress);
       },

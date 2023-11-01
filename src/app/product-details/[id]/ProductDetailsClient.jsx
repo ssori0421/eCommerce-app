@@ -23,7 +23,6 @@ const ProductDetailClient = () => {
   // firebase의 Firestore Database의 'products' 컬렉션과 id를 인자로 전달
   // 반환값인 document(특정 상품의 데이터)를 받아서 product라는 이름으로 사용
   const { document: product } = useFetchDocument('products', id);
-  console.log('product', product);
 
   // useFetchDocuments() 커스텀 훅 호출
   // firebase의 Firestore Database의 'reviews' 컬렉션과 데이터 겁색 조건을 인자로 전달
@@ -33,7 +32,6 @@ const ProductDetailClient = () => {
     '==',
     id,
   ]);
-  console.log('reviews', reviews);
 
   const dispatch = useDispatch();
 

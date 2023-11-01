@@ -14,7 +14,7 @@ import Button from '@/components/button/Button';
 const ProductFilter = () => {
   const [category, setCategory] = useState('All');
   const [brand, setBrand] = useState('All');
-  const [price, setPrice] = useState(10000);
+  const [price, setPrice] = useState(100000000);
 
   // useSelector() 메서드 사용
   // Redux Store에 저장된 state를 읽어와서 각각의 변수에 할당
