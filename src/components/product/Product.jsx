@@ -40,10 +40,6 @@ const Product = () => {
     );
   }, [data, dispatch]);
 
-  // useSelector() 메서드 사용
-  // Redux Store에 저장된 state를 읽어와서 products 변수에 할당
-  const products = useSelector(selectProducts);
-
   return (
     <section className={styles.product}>
       {/* aside 태그를 사용해서 사이드바 UI */}
@@ -51,7 +47,7 @@ const Product = () => {
         {isLoading ? null : <ProductFilter />}
       </aside>
       <div className={styles.content}>
-        {isLoading ? <Loader basic /> : <ProductList products={products} />}
+        {isLoading ? <Loader basic /> : <ProductList />}
       </div>
     </section>
   );
