@@ -111,17 +111,14 @@ eCommerce-app
 ### 4. STACKS 📚
 
 <div align=center> 
-  <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
-
+  <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> </br>
   <img src="https://img.shields.io/badge/NEXT.JS-000000?style=for-the-badge&logo=NEXT.JS&logoColor=black">
   <img src="https://img.shields.io/badge/TYPESCRIPT-3178C6?style=for-the-badge&logo=TYPESCRIPT&logoColor=black">
-  <img src="https://img.shields.io/badge/FIREBASE-FFCA28?style=for-the-badge&logo=FIREBASE&logoColor=black">
-
+  <img src="https://img.shields.io/badge/FIREBASE-FFCA28?style=for-the-badge&logo=FIREBASE&logoColor=black"></br>
   <img src="https://img.shields.io/badge/REDUX-764ABC?style=for-the-badge&logo=REDUX&logoColor=black">
   <img src="https://img.shields.io/badge/SCSS-CC6699?style=for-the-badge&logo=SCSS&logoColor=black">
   <img src="https://img.shields.io/badge/GITHUB ACTIONS-2088FF?style=for-the-badge&logo=GITHUB ACTIONS&logoColor=black">
-  <img src="https://img.shields.io/badge/DOCKER-2496ED?style=for-the-badge&logo=DOCKER&logoColor=black">
-
+  <img src="https://img.shields.io/badge/DOCKER-2496ED?style=for-the-badge&logo=DOCKER&logoColor=black"></br>
   <img src="https://img.shields.io/badge/AMAZON EC2-FF9900?style=for-the-badge&logo=AMAZON EC2&logoColor=black">
   <img src="https://img.shields.io/badge/AMAZON ELASTIC BEANSTALK-CC6699?style=for-the-badge&logo=AMAZON ELASTIC BEANSTALK&logoColor=black">
   <img src="https://img.shields.io/badge/AMAZON IAM-569A31?style=for-the-badge&logo=AMAZON IAM&logoColor=black">
@@ -149,6 +146,7 @@ eCommerce-app
 ```bash
 # 레포지토리 클론
 git clone https://github.com/ssori0421/eCommerce-app.git
+
 # 패키지 설치
 yarn
 
