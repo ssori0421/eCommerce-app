@@ -127,7 +127,7 @@ eCommerce-app
 </div>
 
 <div align=center><h2>Git Convention 🖍️</h2></div>
-
+<div align=center>
 | 태그     | 설명                                                                        |
 | -------- | --------------------------------------------------------------------------- |
 | feat:    | 새로운 기능을 추가할 경우                                                   |
@@ -142,3 +142,4 @@ eCommerce-app
 | rename   | 파일명을 수정하거나 옮기는 작업                                             |
 | remove   | 파일을 삭제하는 작업                                                        |
 | test     | Test코드 추가                                                               |
+</div>
