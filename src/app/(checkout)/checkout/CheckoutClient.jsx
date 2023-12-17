@@ -88,7 +88,7 @@ const CheckoutClient = () => {
           userEmail,
           orderDate: date,
           orderTime: time,
-          orderAmout: amount,
+          orderAmount: amount,
           orderStatus: '주문 수락',
           cartItems,
           shippingAddress,
