@@ -62,6 +62,7 @@ const CheckoutClient = () => {
         const basicToken = Buffer.from(`${secretKey}:`, 'utf-8').toString(
           'base64'
         );
+
         // fetch() - method, body, headers
         // body: body에 값을 넣어줄때는 JSON.stringify 처리해서 넣어줘야 함
         const confirmResponse = fetch(url, {
@@ -89,10 +90,10 @@ const CheckoutClient = () => {
           orderDate: date,
           orderTime: time,
           orderAmount: amount,
-          orderStatus: '주문 수락',
+          orderStatus: '주문수락',
           cartItems,
           shippingAddress,
-          createdAt: Timestamp.now().toDate,
+          createdAt: Timestamp.now().toDate(),
         };
 
         await addDoc(collection(db, 'orders'), orderData);
@@ -107,7 +108,7 @@ const CheckoutClient = () => {
       .catch((error) => {
         // 결제 고객이 결제창을 닫았을 때 에러 처리
         if (error.code === 'USER_CANCEL') {
-          toast.error('결제창을 닫았습니다.');
+          toast.error('결제창이 닫아졌습니다.');
         }
       });
   };
