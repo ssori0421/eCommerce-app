@@ -4,6 +4,8 @@ import productReducer from './slice/productSlice';
 import filterReducer from './slice/filterSlice';
 import cartReducer from './slice/cartSlice';
 import checkoutReducer from './slice/checkoutSlice';
+import orderReducer from './slice/orderSlice';
+
 // rootReducer 선언
 // combineReducers 함수 사용
 // 다양한 reducer들을 합쳐서 하나의 객체로 반환
@@ -13,6 +15,7 @@ const rootReducer = combineReducers({
   filter: filterReducer,
   cart: cartReducer,
   checkout: checkoutReducer,
+  orders: orderReducer,
 });
 
 // Redux Store 정의
