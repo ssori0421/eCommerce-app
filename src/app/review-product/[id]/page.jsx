@@ -1,7 +1,8 @@
 import React from 'react';
+import ReviewProduct from './ReviewProduct';
 
 const ReviewProducts = () => {
-  return <div>ReviewProducts</div>;
+  return <ReviewProduct />;
 };
 
 export default ReviewProducts;
