@@ -44,12 +44,9 @@ const CheckoutAddressClient = () => {
   // 주소 입력 페이지 - 주문하기 클릭시
   const handleSubmit = (e) => {
     e.preventDefault();
-    // dispatch() 함수
-    // SAVE_SHIPPING_ADDRESS 액션 생성자 함수를 인자로 담아서 reducer() 함수에 전달
-    // SAVE_BILLING_ADDRESS 액션 생성자 함수를 인자로 담아서 reducer() 함수에 전달
     dispatch(SAVE_SHIPPING_ADDRESS(shippingAddress));
     dispatch(SAVE_BILLING_ADDRESS(billingAddress));
-    // push()메서드를 사용해서 원하는 path로 라우팅
+
     router.push('/checkout');
   };
   return (

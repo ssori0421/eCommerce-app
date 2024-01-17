@@ -1,4 +1,3 @@
-// hooks/useClient.js
 import { useEffect, useState } from 'react';
 
 export const useClient = () => {

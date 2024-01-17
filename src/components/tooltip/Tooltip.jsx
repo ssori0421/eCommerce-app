@@ -24,9 +24,6 @@ const Tooltip = ({
     backgroundColor: bgColor,
   };
 
-  // type에 따라서 다른 className을 가질 수 있게 하는 함수
-  // tooltip의 화살표 방향을 각각 위/오른쪽/아래/왼쪽으로 사용하고 싶을 때
-  // switch/case문 사용
   const setOrientationClass = (type) => {
     switch (type) {
       case 'top':
@@ -46,7 +43,6 @@ const Tooltip = ({
     <span
       role='tooltip'
       style={style}
-      // setOrientationClass 함수를 사용해서 style을 다르게 줌
       className={classNames(styles.tooltip, setOrientationClass(orientation))}
       {...restProps}
     >

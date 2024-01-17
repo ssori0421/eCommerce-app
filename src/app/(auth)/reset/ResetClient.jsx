@@ -13,23 +13,18 @@ const ResetClient = () => {
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  // 업데이트 버튼 클릭시 호출되는 함수
   const resetPassword = (e) => {
     e.preventDefault();
-    // Loader 컴포넌트 보이도록 함
     setIsLoading(true);
-    // firebase의 sendPasswordResetEmail() 험수 사용
+
     sendPasswordResetEmail(auth, email)
-      // 성공시 진행
       .then(() => {
-        // Loader 컴포넌트 숨김
         setIsLoading(false);
 
         toast.success('비밀번호 업데이트를 위해서 이메일을 체크해주세요.');
       })
-      // 에러시
+
       .catch((error) => {
-        // Loader 컴포넌트 숨김
         setIsLoading(false);
 
         toast.error(error.message);

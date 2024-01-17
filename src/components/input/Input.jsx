@@ -23,7 +23,6 @@ const Input = ({
   const [inputValue, setInputValue] = useState(value ? value : '');
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
-  // input의 type을 지정하는 함수 선언
   const checkType = () => {
     if (email) {
       return 'email';
@@ -34,14 +33,11 @@ const Input = ({
     return 'text';
   };
 
-  // inputValue, email or password 두 개의 state를 업데이드하는 함수 선언
-  // prop으로 받은 onChange 함수임
   const handleChange = (e) => {
     setInputValue(e.target.value);
     onChange(e);
   };
 
-  // password input 오른쪽 눈 모양 아이콘(비밀번호 보임/숨김)
   const iconType = isPasswordVisible ? 'show' : 'hide';
   const iconLabel = `비밀번호 ${isPasswordVisible ? '표시' : '감춤'}`;
 

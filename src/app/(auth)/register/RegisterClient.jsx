@@ -16,34 +16,24 @@ import { auth } from '@/firebase/firebase';
 const RegisterClient = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // confirmPassword (비밀번호 확인)
   const [cPassword, setCPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  // router 객체 생성
   const router = useRouter();
 
-  // 회원가입 버튼을 클릭했을 때 호출되는 함수
   const registerUser = (e) => {
     e.preventDefault();
-    // 비밀번호가 비밀번호 확인과 일치하지 않을 경우
+
     if (password !== cPassword) {
       return toast.error('비밀번호가 일치하지 않습니다.');
     }
-    // Loader 컴포넌트 보이도록 함
+
     setIsLoading(true);
-    // firebase의 createUserWithEmailAndPassword()함수를 사용
-    // userCredential : 회원가입 성공시 firebase에 저장된 유저 정보를 담은 객체
-    // auth는 firebase.js 파일에서 생성한 인증에 필요한 객체
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // userCredential 객체에서 user feild를 user 변수에 담음
         const user = userCredential.user;
-        // Loader 컴포넌트 숨김
         setIsLoading(false);
-
         toast.success('등록 성공...');
-        // router.push 메서드를 사용해서 login 페이지로 이동
         router.push('/login');
       })
       .catch((error) => {
