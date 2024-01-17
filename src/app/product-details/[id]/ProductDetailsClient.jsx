@@ -16,17 +16,10 @@ import { useDispatch } from 'react-redux';
 import { ADD_TO_CART, CALCULATE_TOTAL_QUANTITY } from '@/redux/slice/cartSlice';
 
 const ProductDetailClient = () => {
-  // useParams() 훅을 사용해서 URL의 queryParam을 가져와서 id에 당음
   const { id } = useParams();
 
-  // useFetchDocument() 커스텀 훅 호출
-  // firebase의 Firestore Database의 'products' 컬렉션과 id를 인자로 전달
-  // 반환값인 document(특정 상품의 데이터)를 받아서 product라는 이름으로 사용
   const { document: product } = useFetchDocument('products', id);
 
-  // useFetchDocuments() 커스텀 훅 호출
-  // firebase의 Firestore Database의 'reviews' 컬렉션과 데이터 겁색 조건을 인자로 전달
-  // 반환값인 document를 받아서 reviews라는 이름으로 사용
   const { documents: reviews } = useFetchDocuments('reviews', [
     'productID',
     '==',
@@ -37,16 +30,11 @@ const ProductDetailClient = () => {
 
   const [count, setCount] = useState(1);
 
-  // 장바구니 담기 버튼 클릭시 장바구니에 담는 함수
   const addToCart = () => {
-    // dispatch() 함수
-    // ADD_TO_CART 액션 생성자 함수를 인자로 담아서 reducer() 함수에 전달
-    // CALCULATE_TOTAL_QUANTITY 액션 생성자 함수를 인자로 담아서 reducer() 함수에 전달
     dispatch(ADD_TO_CART({ ...product, quantity: count }));
     dispatch(CALCULATE_TOTAL_QUANTITY());
   };
 
-  // 배송 일자를 표시해주기 위해 필요한 변수들
   const today = new Date();
   const tomorrow = new Date(today.setDate(today.getDate() + 1));
 

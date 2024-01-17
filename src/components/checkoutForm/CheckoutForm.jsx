@@ -14,24 +14,16 @@ import { useClient } from '@/hooks/useClient';
 
 const CheckoutForm = () => {
   const isClient = useClient();
-  // useSelector() 메서드 사용
-  // Redux Store에 저장된 state를 읽어와서 cartItems 변수에 할당
   const cartItems = useSelector(selectCartItems);
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (isClient) {
-      // dispatch() 함수
-      // CALCULATE_SUBTOTAL 액션 생성자 함수를 인자로 담아서 reducer() 함수에 전달
-      // CALCULATE_TOTAL_QUANTITY 액션 생성자 함수를 인자로 담아서 reducer() 함수에 전달
       dispatch(CALCULATE_SUBTOTAL());
       dispatch(CALCULATE_TOTAL_QUANTITY());
     }
   }, [dispatch, cartItems, isClient]);
 
-  // useSelector() 메서드 사용
-  // Redux Store에 저장된 state를 읽어와서 cartTotalQuantity 변수에 할당
-  // Redux Store에 저장된 state를 읽어와서 cartTotalAmount 변수에 할당
   const cartTotalQuantity = useSelector(selectCartTotalQuantity);
   const cartTotalAmount = useSelector(selectCartTotalAmount);
 

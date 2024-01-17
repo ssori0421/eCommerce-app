@@ -24,48 +24,34 @@ const LoginClient = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isAutoLogin, setIsAutoLogin] = useState(false);
 
-  // router 객체 생성
   const router = useRouter();
 
-  // push()메서드를 사용해서 원하는 path로 라우팅
   const redirectUser = () => {
     router.push('/');
   };
 
-  // 로그인 버튼을 클릭했을 때 호출되는 함수
   const loginUser = (e) => {
     e.preventDefault();
     toast.info('성공!');
-    // Loader 컴포넌트 보이도록 함
     setIsLoading(true);
-    // firebase의 signInWithEmailAndPassword()함수를 사용
     signInWithEmailAndPassword(auth, email, password)
-      // 로그인 성공시
       .then(() => {
-        // Loader 컴포넌트 숨김
         setIsLoading(false);
         toast.success('로그인에 성공했습니다.');
-        // 홈 화면으로 이동
         redirectUser();
       })
       .catch((error) => {
-        // Loader 컴포넌트 숨김
         setIsLoading(false);
         toast.error(error.message);
       });
   };
 
-  // 구글 로그인 버튼을 클릭했을 때 호출되는 함수
   const signInWithGoogle = (e) => {
     e.preventDefault();
-    // 인스턴스 생성
     const provider = new GoogleAuthProvider();
-    // firebase의 signInWithPopup()함수를 사용해서 구글 로그인 프로세스 시작
     signInWithPopup(auth, provider)
-      // 구글 로그인 성공시
       .then((result) => {
         toast.success('로그인에 성공했습니다.');
-        // 홈 화면으로 이동
         redirectUser();
       })
       .catch((error) => {

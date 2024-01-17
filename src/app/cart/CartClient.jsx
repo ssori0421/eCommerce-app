@@ -31,65 +31,35 @@ const CartClient = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  // useSelector() 메서드 사용
-  // Redux Store에 저장된 state를 읽어와서 isLoggedIn 변수에 할당
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
-  // 장바구니 페이지 수량 + 버튼 클릭시
   const increaseCart = (cart) => {
-    // dispatch() 함수
-    // ADD_TO_CART 액션 생성자 함수를 인자로 담아서 reducer() 함수에 전달
     dispatch(ADD_TO_CART(cart));
   };
 
-  // 장바구니 페이지 수량 - 버튼 클릭시
   const decreaseCart = (cart) => {
-    // dispatch() 함수
-    // DECREASE_CART 액션 생성자 함수를 인자로 담아서 reducer() 함수에 전달
     dispatch(DECREASE_CART(cart));
   };
 
-  // 장바구니 페이지 상품 삭제 버튼 클릭시
   const removeFromCart = (cart) => {
-    // dispatch() 함수
-    // REMOVE_FROM_CART 액션 생성자 함수를 인자로 담아서 reducer() 함수에 전달
     dispatch(REMOVE_FROM_CART(cart));
   };
 
-  // 장바구니 페이지 카트 비우기 버튼 클릭시
   const clearCart = () => {
-    // dispatch() 함수
-    // CLEAR_CART 액션 생성자 함수를 인자로 담아서 reducer() 함수에 전달
     dispatch(CLEAR_CART());
   };
 
-  // location는 window객체에 존재함
-  // 에러를 방지하기 위해 조건문을 사용
   const url = typeof window !== 'undefined' ? window.location.href : '';
-  // 계산하기 버튼 클릭시
-  // 결제 페이지로 이동
   const checkout = () => {
-    // 로그인 한 유저
     if (isLoggedIn) {
       router.push('/checkout-address');
-    }
-    // 로그인 안 한 유저
-    // dispatch() 함수
-    // SAVE_URL 액션 생성자 함수를 인자로 담아서 reducer() 함수에 전달
-    // login 페이지로 이동
-    else {
+    } else {
       dispatch(SAVE_URL(url));
       router.push('/login');
     }
   };
 
-  // useEffect()
-  // 자동 실행
   useEffect(() => {
-    // dispatch() 함수
-    // CALCULATE_SUBTOTAL 액션 생성자 함수를 인자로 담아서 reducer() 함수에 전달
-    // CALCULATE_TOTAL_QUANTITY 액션 생성자 함수를 인자로 담아서 reducer() 함수에 전달
-    // SAVE_URL 액션 생성자 함수를 인자로 담아서 reducer() 함수에 전달
     dispatch(CALCULATE_SUBTOTAL());
     dispatch(CALCULATE_TOTAL_QUANTITY);
     dispatch(SAVE_URL(''));

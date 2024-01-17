@@ -18,15 +18,9 @@ const InnerHeader = () => {
   const dispatch = useDispatch();
   const [search, setSearch] = useState('');
 
-  // useSelector() 메서드 사용
-  // Redux Store에 저장된 state를 읽어와서 products 변수에 할당
   const products = useSelector(selectProducts);
 
-  // useEffect 사용
-  // 자동 실행
   useEffect(() => {
-    // dispatch() 함수
-    // FILTER_BY_SEARCH 액션 생성자 함수를 인자로 담아서 reducer() 함수에 전달
     dispatch(FILTER_BY_SEARCH({ products, search }));
   }, [dispatch, products, search]);
 
