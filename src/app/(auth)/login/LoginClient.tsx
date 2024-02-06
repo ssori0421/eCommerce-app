@@ -30,7 +30,7 @@ const LoginClient = () => {
     router.push('/');
   };
 
-  const loginUser = (e) => {
+  const loginUser = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     toast.info('성공!');
     setIsLoading(true);
@@ -46,8 +46,7 @@ const LoginClient = () => {
       });
   };
 
-  const signInWithGoogle = (e) => {
-    e.preventDefault();
+  const signInWithGoogle = () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
       .then((result) => {

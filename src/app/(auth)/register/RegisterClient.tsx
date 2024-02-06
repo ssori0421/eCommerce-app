@@ -21,7 +21,7 @@ const RegisterClient = () => {
 
   const router = useRouter();
 
-  const registerUser = (e) => {
+  const registerUser = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (password !== cPassword) {
@@ -51,7 +51,6 @@ const RegisterClient = () => {
             <Image src={LogoPath} alt='logo' width={247} />
           </h1>
           <form className={styles.form} onSubmit={registerUser}>
-            {/* email input-input 컴포넌트에 prop으로 전달 */}
             <Input
               email
               icon='letter'
@@ -63,7 +62,6 @@ const RegisterClient = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            {/* password input-input 컴포넌트에 prop으로 전달 */}
             <Input
               password
               icon='lock'
@@ -88,7 +86,6 @@ const RegisterClient = () => {
             />
 
             <div className={styles.buttonGroup}>
-              {/* Button 컴포넌트에 prop으로 전달 */}
               <Button type='submit' width='100%'>
                 회원가입
               </Button>
