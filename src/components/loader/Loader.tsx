@@ -2,7 +2,11 @@ import React from 'react';
 import styles from './Loader.module.scss';
 import { RotatingLines } from 'react-loader-spinner';
 
-const Loader = ({ basic }) => {
+interface ILoaderProps {
+  basic?: boolean;
+}
+
+const Loader = ({ basic }: ILoaderProps) => {
   /* 일부 컴포넌트에서 spinner를 보여주고 싶을 때 */
   if (basic) {
     return (

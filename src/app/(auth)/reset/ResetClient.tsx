@@ -8,12 +8,13 @@ import Link from 'next/link';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '@/firebase/firebase';
 import { toast } from 'react-toastify';
+import Input from '@/components/input/Input';
 
 const ResetClient = () => {
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const resetPassword = (e) => {
+  const resetPassword = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
 
@@ -42,7 +43,7 @@ const ResetClient = () => {
               subtitle='이메일 주소를 입력해주세요.'
             />
             <form onSubmit={resetPassword}>
-              <input
+              <Input
                 id='reset'
                 label='reset'
                 type='text'
