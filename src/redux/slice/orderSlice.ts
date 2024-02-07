@@ -1,6 +1,13 @@
+import { IOrder } from '@/types';
 import { createSlice } from '@reduxjs/toolkit';
+import { RootState } from '../store';
 
-const initialState = {
+interface IOrderState {
+  orderHistory: IOrder[];
+  totalOrderAmount: null | number;
+}
+
+const initialState: IOrderState = {
   orderHistory: [],
   totalOrderAmount: null,
 };
@@ -19,6 +26,7 @@ const orderSlice = createSlice({
 
 export const { STORE_ORDERS } = orderSlice.actions;
 
-export const selectOrderHistory = (state) => state.orders.orderHistory;
+export const selectOrderHistory = (state: RootState) =>
+  state.orders.orderHistory;
 
 export default orderSlice.reducer;
