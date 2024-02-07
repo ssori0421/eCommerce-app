@@ -1,14 +1,17 @@
 import React from 'react';
-
 import letterPath from './images/shape=letter.svg';
 import lockPath from './images/shape=lock.svg';
 import showPath from './images/shape=show.svg';
 import hidePath from './images/shape=hide.svg';
 import Image from 'next/image';
 
-// type, alt(없으면 ''값으로), 나머지 prop들을 props로 내려줘서
-// switch/case 문을 사용해서 type에 따라 4종류의 아이콘을 보여줌
-const Icon = ({ type, alt = '', ...restProps }) => {
+interface IIconProps {
+  type: 'letter' | 'lock' | 'show' | 'hide';
+  alt?: string;
+  [x: string]: any;
+}
+
+const Icon = ({ type, alt = '', ...restProps }: IIconProps) => {
   let src = '';
 
   switch (type) {
