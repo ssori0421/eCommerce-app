@@ -4,21 +4,22 @@ import styles from './Header.module.scss';
 import Link from 'next/link';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth } from '@/firebase/firebase';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import InnerHeader from '../innerHeader/InnerHeader';
 import { useDispatch } from 'react-redux';
 import { REMOVE_ACTIVE_USER, SET_ACTIVE_USER } from '@/redux/slice/authSlice';
+import { toast } from 'react-toastify';
 
 const Header = () => {
   const pathname = usePathname();
-
+  const router = useRouter();
   const dispatch = useDispatch();
   const [displayName, setDisplayName] = useState('');
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         if (user.displayName === null) {
-          const u1 = user.email.substring(0, user.email.indexOf('@'));
+          const u1 = user.email!.substring(0, user.email!.indexOf('@'));
           const uName = u1.charAt(0).toUpperCase() + u1.slice(1);
           setDisplayName(uName);
         } else {
@@ -43,7 +44,7 @@ const Header = () => {
     signOut(auth)
       .then(() => {
         toast.success('로그아웃 되었습니다.');
-        Router.push('/');
+        router.push('/');
       })
       .catch((error) => {
         toast.error(error.message);

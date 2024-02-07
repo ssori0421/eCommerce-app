@@ -2,7 +2,7 @@ import {
   selectFilteredProducts,
   SORT_PRODUCTS,
 } from '@/redux/slice/filterSlice';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ChangeEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './ProductList.module.scss';
 import ProductItem from '../productItem/ProductItem';
@@ -31,9 +31,10 @@ const ProductList = () => {
     indexOfLastProduct
   );
 
-  const isRadioSelected = (value) => sort === value;
+  const isRadioSelected = (value: string) => sort === value;
 
-  const handleRadioClick = (e) => setSort(e.target.value);
+  const handleRadioClick = (e: ChangeEvent<HTMLInputElement>) =>
+    setSort(e.target.value);
 
   return (
     <div className={styles.productList}>

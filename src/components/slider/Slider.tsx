@@ -36,7 +36,6 @@ const Slider = () => {
         className={`${styles.arrow} ${styles.next}`}
         onClick={nextSlide}
       />
-      {/* map 메서드를 사용해서 sliderData를 순회 */}
       {sliderData.map((slider, index) => {
         const { image, heading } = slider;
 
