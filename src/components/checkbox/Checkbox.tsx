@@ -1,10 +1,10 @@
-import React, { ChangeEvent } from 'react';
+import React from 'react';
 
 interface ICheckboxProps {
   disabled?: boolean;
   checked?: boolean;
   label: string;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   [x: string]: any;
 }
 

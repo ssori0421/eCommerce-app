@@ -1,5 +1,5 @@
 'use client';
-import React, { FormEvent } from 'react';
+import React from 'react';
 import styles from './Checkout.module.scss';
 import Heading from '@/components/heading/Heading';
 import CheckoutForm from '@/components/checkoutForm/CheckoutForm';
@@ -28,7 +28,7 @@ const CheckoutClient = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const tossPayment = await loadTossPayments(

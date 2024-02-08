@@ -1,5 +1,5 @@
 'use client';
-import React, { ChangeEvent, FormEvent, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './CheckoutAddress.module.scss';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
@@ -29,17 +29,17 @@ const CheckoutAddressClient = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const handleShipping = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleShipping = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setShippingAddress({ ...shippingAddress, [name]: value });
   };
 
-  const handleBilling = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleBilling = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setBillingAddress({ ...billingAddress, [name]: value });
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     dispatch(SAVE_SHIPPING_ADDRESS(shippingAddress));

@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState } from 'react';
 import styles from './Input.module.scss';
 import Icon from '../icon/Icon';
 
@@ -17,7 +17,7 @@ interface IInputProps {
   value?: string;
   error?: { message: string };
   className?: string;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   [x: string]: any;
 }
 
@@ -51,7 +51,7 @@ const Input = ({
     return 'text';
   };
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
     onChange(e);
   };
