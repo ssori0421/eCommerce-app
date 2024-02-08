@@ -28,11 +28,11 @@ const CheckoutClient = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const tossPayment = await loadTossPayments(
-      process.env.NEXT_PUBLIC_TOSS_CLIENT_KEY
+      process.env.NEXT_PUBLIC_TOSS_CLIENT_KEY!
     );
 
     tossPayment
@@ -63,6 +63,8 @@ const CheckoutClient = () => {
             'Content-Type': 'application/json',
           },
         }).then((response) => response.json());
+
+        console.log('confirmResponse', confirmResponse);
 
         const today = new Date();
         const date = today.toDateString();

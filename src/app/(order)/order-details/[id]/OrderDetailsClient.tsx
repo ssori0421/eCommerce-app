@@ -8,15 +8,16 @@ import Loader from '@/components/loader/Loader';
 import Image from 'next/image';
 import priceFormat from '@/utils/priceFormat';
 import Button from '@/components/button/Button';
+import { ICartItem } from '@/types';
 
 const OrderDetailsClient = () => {
-  const { id } = useParams();
+  const { id } = useParams() as { id: string };
 
   // orders 콜렉션에 있는 해당 id의 document를 가져옴 >  order 이라는 이름으로 사용함
   const { document: order } = useFetchDocument('orders', id);
 
   const router = useRouter();
-  const handleClick = (id) => {
+  const handleClick = (id: string) => {
     router.push(`/review-product/${id}`);
   };
 
@@ -49,7 +50,7 @@ const OrderDetailsClient = () => {
                 </tr>
               </thead>
               <tbody>
-                {order.cartItems.map((cartItem, index) => {
+                {order.cartItems.map((cartItem: ICartItem, index: number) => {
                   const { id, name, price, imageURL, cartQuantity } = cartItem;
                   return (
                     <tr key={id}>

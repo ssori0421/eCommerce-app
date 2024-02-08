@@ -10,45 +10,43 @@ import {
 import Heading from '@/components/heading/Heading';
 import Button from '@/components/button/Button';
 
-const initiLAddressState = {
+const initialAddressState = {
   name: '',
   line: '',
   city: '',
-  pastalCode: '',
+  postalCode: '',
 };
 
 const CheckoutAddressClient = () => {
   const [shippingAddress, setShippingAddress] = useState({
-    ...initiLAddressState,
+    ...initialAddressState,
   });
 
   const [billingAddress, setBillingAddress] = useState({
-    ...initiLAddressState,
+    ...initialAddressState,
   });
 
   const dispatch = useDispatch();
   const router = useRouter();
 
-  // 주소 입력 페이지 - 배송 주소 입력
-  const handleShipping = (e) => {
+  const handleShipping = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setShippingAddress({ ...shippingAddress, [name]: value });
   };
 
-  // 주소 입력 페이지  - 청구지 주소 입력
-  const handleBilling = (e) => {
+  const handleBilling = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setBillingAddress({ ...billingAddress, [name]: value });
   };
 
-  // 주소 입력 페이지 - 주문하기 클릭시
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     dispatch(SAVE_SHIPPING_ADDRESS(shippingAddress));
     dispatch(SAVE_BILLING_ADDRESS(billingAddress));
-
     router.push('/checkout');
   };
+
   return (
     <section className={styles.checkout}>
       <Heading title='상세주문' />

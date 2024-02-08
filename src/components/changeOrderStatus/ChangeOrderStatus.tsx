@@ -2,7 +2,7 @@
 import { db } from '@/firebase/firebase';
 import { Timestamp, doc, setDoc } from 'firebase/firestore';
 import { useRouter } from 'next/navigation';
-import React, { FormEvent, useState } from 'react';
+import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import Loader from '../loader/Loader';
 import styles from './ChangeOrderStatus.module.scss';
@@ -20,7 +20,7 @@ const ChangeOrderStatus = ({ order, id }: IChangeOrderStatusProps) => {
   const [status, setStatus] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const editOrder = (e: FormEvent<HTMLFormElement>, id: string) => {
+  const editOrder = (e: React.FormEvent<HTMLFormElement>, id: string) => {
     e.preventDefault();
 
     const orderData = {

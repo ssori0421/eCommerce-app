@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React from 'react';
 import styles from './AutoSigninCheckbox.module.scss';
 import Checkbox from '../checkbox/Checkbox';
 import Tooltip from '../tooltip/Tooltip';
@@ -9,7 +9,7 @@ interface IAutoSignInCheckboxProps {
   disabled?: boolean;
   orientation?: 'top' | 'bottom' | 'left' | 'right';
   message?: string;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   [x: string]: any;
 }
 
