@@ -1,10 +1,20 @@
 'use client';
 import React, { useState, useCallback, useEffect } from 'react';
-import { query, collection, where, getDocs } from 'firebase/firestore';
+import {
+  query,
+  collection,
+  where,
+  getDocs,
+  WhereFilterOp,
+  DocumentData,
+} from 'firebase/firestore';
 import { db } from '@/firebase/firebase';
 
-const useFetchDocuments = (collectionName, arg) => {
-  const [documents, setDocuments] = useState([]);
+const useFetchDocuments = (
+  collectionName: string,
+  arg: [string, WhereFilterOp, string]
+) => {
+  const [documents, setDocuments] = useState<DocumentData[]>([]);
 
   const getDocuments = useCallback(async () => {
     const q = query(
@@ -14,7 +24,7 @@ const useFetchDocuments = (collectionName, arg) => {
 
     const querySnapshot = await getDocs(q);
 
-    let documentsArray = [];
+    let documentsArray: DocumentData[] = [];
 
     querySnapshot.forEach((doc) => {
       const data = {
