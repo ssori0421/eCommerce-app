@@ -4,10 +4,7 @@ import { DocumentData, doc, getDoc } from 'firebase/firestore';
 import { db } from '@/firebase/firebase';
 import { toast } from 'react-toastify';
 
-const useFetchDocument = (
-  collectionName: string,
-  documentID: string | string
-) => {
+const useFetchDocument = (collectionName: string, documentID: string) => {
   const [document, setDocument] = useState<DocumentData | null>(null);
 
   const getDocument = useCallback(async () => {
