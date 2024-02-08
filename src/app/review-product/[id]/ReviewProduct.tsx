@@ -20,15 +20,15 @@ const ReviewProduct = () => {
 
   const router = useRouter();
 
-  const { id } = useParams();
+  const { id } = useParams() as { id: string };
   const userID = useSelector(selectUserID);
   const userName = useSelector(selectUserName);
 
   // firebase의 products 컬렉션에서 해당 id의 document를 가져옴 > product 라는 이름으로 저장
   const { document: product } = useFetchDocument('products', id);
 
-  const submitReview = (e) => {
-    e.preventDetault();
+  const submitReview = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
     const today = new Date();
     const date = today.toDateString();
