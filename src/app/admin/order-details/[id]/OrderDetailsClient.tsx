@@ -10,7 +10,7 @@ import ChangeOrderStatus from '@/components/changeOrderStatus/ChangeOrderStatus'
 import priceFormat from '@/utils/priceFormat';
 import { ICartItem, IOrder } from '@/types';
 const OrderDetailsClient = () => {
-  const { id } = useParams();
+  const { id } = useParams() as { id: string };
   const { document: order } = useFetchDocument('orders', id);
 
   return (

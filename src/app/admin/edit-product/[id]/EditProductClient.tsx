@@ -18,7 +18,7 @@ import { categories } from '../../add-product/AddProductClient';
 import { toast } from 'react-toastify';
 
 const EditProductClient = () => {
-  const { id } = useParams();
+  const { id } = useParams() as { id: string };
   const [uploadProgress, setUploadProgress] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
