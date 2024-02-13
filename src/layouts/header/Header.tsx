@@ -88,7 +88,6 @@ const Header = () => {
           </li>
         </ul>
       </div>
-      {/* admin 관련 path일 경우에는 InnerHeader 컴포넌트가 보이지 않도록 함 */}
       {pathname.startsWith('/admin') ? null : <InnerHeader />}
     </header>
   );
